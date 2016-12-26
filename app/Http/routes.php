@@ -10,7 +10,11 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::group(['namespace' => 'Admin', 'domain' => envDomain('gm'), 'as' => 'admin.'], function () {
+    Route::controller('auth', 'AuthController');
+    Route::group(['middleware' => 'admin.auth'], function() {
+        Route::get('/',function(){ return redirect('index');});
+        Route::controller('index', 'IndexController');
+    });
 
-Route::get('/', function () {
-    return view('welcome');
 });
