@@ -34,7 +34,7 @@
             {!! csrf_field() !!}
             <button type="button" class="btn btn-primary block full-width m-b">登 录</button>
             <p class="text-muted text-center">
-                <a href="login.html#"><small>忘记密码了？</small></a> | <a href="{{url('auth/register')}}">注册一个新账号</a>
+                {{--<a href="login.html#"><small>忘记密码了？</small></a> | --}}<a href="{{url('auth/register')}}">注册一个新账号</a>
             </p>
 
         </form>

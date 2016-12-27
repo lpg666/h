@@ -18,16 +18,14 @@ class AuthController extends Controller
     public function getLogin(Request $request)
     {
         $referer = $request->get('referer', url('/'));
-        $wechat_state = Str::random(40);
-        session(['state' => $wechat_state]);
-        return view('admin.authLogin',['referer' => $referer, 'wechat_state' => $wechat_state]);
+        return view('admin.authLogin',['referer' => $referer]);
     }
 
     public function postLogin(Request $request)
     {
         $this->validate($request,[
             'name' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:6'
         ]);
         $name = $request->input('name');
         $password = $request->input('password');
@@ -49,9 +47,38 @@ class AuthController extends Controller
         return response()->json($json);
     }
 
-    public function getRegister()
+    public function getRegister(Request $request)
     {
-        return view('admin.authRegister');
+        $referer = $request->get('referer', url('/'));
+        return view('admin.authRegister',['referer' => $referer]);
+    }
+
+    public function postRegister(Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'password' => 'required|min:6',
+            'password1' => 'required|min:6'
+        ]);
+        $name = $request->input('name');
+        $member = User::where('name',$name)->first();
+        if (empty($member)){
+            $member = User::create([
+                'name' => $request->input('name'),
+                'password' => password_hash($request->input('password'),PASSWORD_DEFAULT),
+                'reg_ip' => $request->ip(),
+                'real_name' => $request->input('name')
+            ]);
+            loginSession($member);
+            $json['msg_type'] = 1;
+            $json['msg'] = '注册成功';
+            return response()->json($json);
+        }else{
+            $json['msg_type'] = 0;
+            $json['msg'] = '用户名已存在';
+            return response()->json($json);
+        }
+
     }
 
     public function getLogout()

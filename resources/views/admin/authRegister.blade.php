@@ -26,23 +26,24 @@
         </div>
         <h3>欢迎注册 H+</h3>
         <p>创建一个H+新账户</p>
-        <form class="m-t" role="form" action="http://www.zi-han.net/theme/hplus/login.html">
+        <form class="m-t" role="form" action="">
             <div class="form-group">
-                <input type="text" class="form-control" placeholder="请输入用户名" required="">
+                <input type="text" name="name" class="name form-control" placeholder="请输入用户名" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="请输入密码" required="">
+                <input type="password" name="password" class="pass form-control" placeholder="请输入密码" required="">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="请再次输入密码" required="">
+                <input type="password" name="password1" class="pass1 form-control" placeholder="请再次输入密码" required="">
             </div>
-            <div class="form-group text-left">
+            {{--<div class="form-group text-left">
                 <div class="checkbox i-checks">
                     <label class="no-padding">
                         <input type="checkbox"><i></i> 我同意注册协议</label>
                 </div>
-            </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">注 册</button>
+            </div>--}}
+            {!! csrf_field() !!}
+            <button type="button" class="btn btn-primary block full-width m-b">注 册</button>
 
             <p class="text-muted text-center"><small>已经有账户了？</small><a href="{{url('auth/login')}}">点此登录</a>
             </p>
@@ -52,7 +53,39 @@
 </div>
 <script src="{{ elixir('admin/js/app.js') }}"></script>
 <script>
-    $(document).ready(function(){$(".i-checks").iCheck({checkboxClass:"icheckbox_square-green",radioClass:"iradio_square-green",})});
+    $(document).ready(function(){
+        $(".i-checks").iCheck({
+            checkboxClass:"icheckbox_square-green",
+            radioClass:"iradio_square-green",
+        });
+        $(".btn").click(function () {
+            if($(".name").val().length<=0){
+                alert('用户名不能为空！');
+            }else if($(".pass").val().length<=0){
+                alert('密码不能为空！');
+            }else if($(".pass1").val().length<=0){
+                alert('密码不能为空！');
+            }else if($(".pass").val()!==$(".pass1").val()){
+                alert('两次输入的密码不一致！');
+            }else{
+                $.ajax({
+                    type:'post',
+                    url:'{{url('auth/register')}}',
+                    data: $('.m-t').serialize(),
+                    dataType:'json',
+                    success: function(data){
+                        if(data.msg_type==1){
+                            alert(data.msg);
+                            location.href='{{$referer}}';
+                        }else if(data.msg_type==0){
+                            alert(data.msg);
+                        }
+                    },
+                    error: function(request) {}
+                });
+            }
+        });
+    });
 </script>
 </body>
 </html>
