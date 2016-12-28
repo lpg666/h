@@ -15,6 +15,7 @@ Route::group(['namespace' => 'Admin', 'domain' => envDomain('gm'), 'as' => 'admi
     Route::group(['middleware' => 'admin.auth'], function() {
         Route::get('/',function(){ return redirect('index');});
         Route::controller('index', 'IndexController');
+        Route::controller('goods', 'GoodsController');
     });
 
 });

@@ -18,7 +18,8 @@ elixir(function(mix) {
         'admin/animate.min.css',
         'admin/style.min.css',
         'admin/login.min.css',
-        'admin/custom.css'
+        'admin/custom.css',
+        'admin/index.css'
     ], 'public/admin/css');
 
     mix.scripts([

@@ -65,3 +65,42 @@ function saveUrlImage($url, $save_path) {
     uploadUpyun(public_path($save_path), $save_path);
     return $save_path;
 }
+
+/**
+ * 获取当前控制器名
+ *
+ * @return string
+ */
+function getCurrentControllerName()
+{
+    $action = getCurrentAction();
+    if (!$action) return false;
+    $rs = strrchr($action['controller'], '\\');
+    $rs = str_ireplace('Controller', '', $rs);
+    return trim($rs, '\\');
+}
+
+/**
+ * 获取当前方法名
+ *
+ * @return string
+ */
+function getCurrentMethodName()
+{
+    $action = getCurrentAction();
+    if (!$action) return false;
+    return $action['method'];
+}
+
+/**
+ * 获取当前控制器与方法
+ *
+ * @return array
+ */
+function getCurrentAction()
+{
+    $action = \Route::current()->getActionName();
+    if (stripos($action, '@') === false) return false;
+    list($class, $method) = explode('@', $action);
+    return ['controller' => $class, 'method' => $method];
+}

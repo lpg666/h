@@ -3,13 +3,10 @@
 @section('page_title', 'H+ 后台主题UI框架 - 主页')
 
 @section('header_assets')
-    <style>
-        .breadcrumb{padding-left: 20px;}
-    </style>
 @endsection
 
 @section('content')
-1
+    <p style="text-align: center; font-size: 28px; line-height: 200%;">看什么看，没看过主页？</p>
 @endsection
 
 @section('footer_assets')
