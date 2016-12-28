@@ -47,6 +47,12 @@ class AuthController extends Controller
         return response()->json($json);
     }
 
+    /**
+     * 注册
+     *
+     * @return Response
+     */
+
     public function getRegister(Request $request)
     {
         $referer = $request->get('referer', url('/'));
@@ -80,6 +86,11 @@ class AuthController extends Controller
         }
 
     }
+
+    /**
+     * 退出登陆
+     *
+     */
 
     public function getLogout()
     {
