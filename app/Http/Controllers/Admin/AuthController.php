@@ -39,6 +39,7 @@ class AuthController extends Controller
         if(password_verify($password,$member->password)){
             $json['msg_type'] = 1;
             $json['msg'] = '登录成功';
+            $member->save();
             loginSession($member);
             return response()->json($json);
         }
@@ -75,7 +76,6 @@ class AuthController extends Controller
                 'reg_ip' => $request->ip(),
                 'real_name' => $request->input('name')
             ]);
-            loginSession($member);
             $json['msg_type'] = 1;
             $json['msg'] = '注册成功';
             return response()->json($json);

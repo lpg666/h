@@ -19,7 +19,8 @@ elixir(function(mix) {
         'admin/style.min.css',
         'admin/login.min.css',
         'admin/custom.css',
-        'admin/index.css'
+        'admin/index.css',
+        'admin/umeditor.min.css'
     ], 'public/admin/css');
 
     mix.scripts([
@@ -31,7 +32,11 @@ elixir(function(mix) {
         'hplus.min.js',
         'contabs.min.js',
         'pace.min.js',
-        'icheck.min.js'
+        'icheck.min.js',
+        'umeditor.min.js',
+        'umeditor.config.js',
+        'zh-cn.js',
+        'webuploader.min.js'
     ], 'public/admin/js/app.js');
 
     mix.version(['admin/css/all.css','admin/js/app.js']);
