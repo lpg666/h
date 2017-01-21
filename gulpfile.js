@@ -20,6 +20,7 @@ elixir(function(mix) {
         'admin/login.min.css',
         'admin/custom.css',
         'admin/index.css',
+        'admin/sweetalert2.min.css',
         'admin/umeditor.min.css'
     ], 'public/admin/css');
 
@@ -36,7 +37,9 @@ elixir(function(mix) {
         'umeditor.min.js',
         'umeditor.config.js',
         'zh-cn.js',
-        'webuploader.min.js'
+        'webuploader.min.js',
+        'sweetalert2.min.js',
+        'es6-promise.min.js'
     ], 'public/admin/js/app.js');
 
     mix.version(['admin/css/all.css','admin/js/app.js']);

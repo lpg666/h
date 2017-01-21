@@ -15,6 +15,34 @@ function loginSession($member='') {
     else session(['member'=>$member]);
 }
 
+//trigger error, exit
+function error($msg='失败', $msg_type = -1, $error = 1, $http_code=200)
+{
+    $json['error'] = $error;
+    $json['msg_type'] = $msg_type;
+    $json['msg'] = $msg;
+    return response()->json($json, $http_code);
+}
+
+//success and exit
+function success($data=array(), $msg = '成功', $msg_type = 200, $element = array())
+{
+    /*$notify = 0;
+    if (session('member')) {
+        $member = session('member');
+        $notify = \App\Model\Message::where('member_id', $member->id)->where('readed', '0')->count();
+    }*/
+    $json['data'] = $data;
+    /*$json['notify'] = $notify;*/
+    $json['msg_type'] = $msg_type;
+    $json['msg'] = $msg;
+    foreach ($element as $key => $val) {
+        $json[$key] = $val;
+    }
+    return response()->json($json);
+}
+
+
 //将时间转换成刚刚、分钟、小时前
 function getTimeWord($date){
     $curr = time();

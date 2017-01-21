@@ -44,9 +44,11 @@
 <script>
     $(".btn").click(function () {
         if($(".name").val().length<=0){
-            alert('用户名不能为空！');
+            swal({text:'用户名不能为空！',timer:2000,showConfirmButton:false});
         }else if($(".pass").val().length<=0){
-            alert('密码不能为空！');
+            swal({text:'密码不能为空！',timer:2000,showConfirmButton:false});
+        }else if($(".pass").val().length<6){
+            swal({text:'密码长度最少为6！',timer:2000,showConfirmButton:false});
         }else{
             $.ajax({
                 type:'post',
@@ -55,12 +57,11 @@
                 dataType:'json',
                 success: function(data){
                     if(data.msg_type==1){
-                        alert(data.msg);
-                        location.href='{{$referer}}';
-                    }else if(data.msg_type==-1){
-                        alert(data.msg);
-                    }else if(data.msg_type==-2){
-                        alert(data.msg);
+                        swal({text:data.msg,type:'success',timer:2000,showConfirmButton:false}).then(function () {
+                            location.href='{{$referer}}';
+                        });
+                    }else{
+                        swal({text:data.msg,type:'error',timer:2000,showConfirmButton:false});
                     }
                 },
                 error: function(request) {}

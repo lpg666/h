@@ -66,7 +66,10 @@
                             <a class="" href="{{ url('goods/index') }}">全部商品</a>
                         </li>
                         <li>
-                            <a class="" href="#">下架商品</a>
+                            <a class="" href="{{ url('goods/add') }}">添加商品</a>
+                        </li>
+                        <li>
+                            <a class="" href="{{ url('goods/not-active') }}">下架商品</a>
                         </li>
                     </ul>
                 </li>
@@ -92,7 +95,8 @@
                     <li>@if(getCurrentControllerName()=='Index')<a href="{{url('/')}}">主页</a>@elseif(getCurrentControllerName()=='Goods')<a href="{{url('goods/index')}}">全部商品</a>@endif</li>
                     @if(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='anyAdd')
                         <li><a href="#">添加商品</a></li>
-                    @else
+                    @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='anyEdit')
+                    <li><a href="#">编辑商品</a></li>
                     @endif
                     {{--<li class="active"></li>--}}
             </ol>

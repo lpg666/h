@@ -34,7 +34,7 @@
                             <td>{{ $good->cost_price }}</td>
                             <td>{{ date('Y:m:d H:i:s',$good->add_time) }}</td>
                             <td>@if($good->shown==1) <span class="green_color">已上架</span> @else <span class="red_color">已下架</span> @endif</td>
-                            <td><a class="shop_ban" href="#">下架</a><span class="shuxian">|</span><a class="shop_edit" href="{{url('goods/edit')}}?goods_id={{$good->id}}">编辑</a><span class="shuxian">|</span><a class="shop_delete" href="#">删除</a></td>
+                            <td><a class="shop_ban" href="#">上架</a><span class="shuxian">|</span><a class="shop_edit" href="{{url('goods/edit')}}?goods_id={{$good->id}}">编辑</a><span class="shuxian">|</span><a class="shop_delete" href="#">删除</a></td>
                         </tr>
                         @endforeach
                         </tbody>
@@ -47,9 +47,5 @@
 @endsection
 
 @section('footer_assets')
-<script>
-    $(".shop_ban").click(function () {
 
-    });
-</script>
 @endsection

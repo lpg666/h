@@ -1,6 +1,6 @@
 @extends('admin._layouts.layouts')
 
-@section('page_title', 'H+ 后台主题UI框架 - 添加商品')
+@section('page_title', 'H+ 后台主题UI框架 - 编辑商品')
 
 @section('header_assets')
     <script>window.UMEDITOR_HOME_URL="/admin/umeditor/";</script>
@@ -23,19 +23,19 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-md-2 control-label">商品名称</label>
                             <div class="col-sm-10 col-md-5">
-                                <input id="name" name="goods_name" type="text" class="form-control">
+                                <input id="name" name="goods_name" value="{{$datas->goods_name}}" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-md-2 control-label">售价(元)</label>
                             <div class="col-sm-10 col-md-5">
-                                <input id="price" name="price" type="text" class="form-control">
+                                <input id="price" name="price" value="{{$datas->price}}" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-md-2 control-label">成本价(元)</label>
                             <div class="col-sm-10 col-md-5">
-                                <input id="cost_price" name="cost_price" type="text" class="form-control">
+                                <input id="cost_price" name="cost_price" value="{{$datas->price}}" type="text" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -43,11 +43,11 @@
                             <div class="col-sm-10 col-md-5">
                                 <div class="radio i-checks">
                                     <label>
-                                        <input class="shown" type="radio" checked="" value="1" name="shown"> <i></i>是</label>
+                                        <input class="shown" type="radio" @if($datas->shown==1)checked="" @endif value="1" name="shown"> <i></i>是</label>
                                 </div>
                                 <div class="radio i-checks">
                                     <label>
-                                        <input class="shown" type="radio" value="0" name="shown"> <i></i>否</label>
+                                        <input class="shown" type="radio" @if($datas->shown==0)checked="" @endif value="0" name="shown"> <i></i>否</label>
                                 </div>
                             </div>
                         </div>
@@ -58,15 +58,25 @@
                                 <div id="uploader">
                                     <div id="fileList" class="uploader-list"></div>
                                     <div id="filePicker"></div>
+                                    @foreach($datas->pic as $k=>$value)
+                                    <div class="file-item thumbnail upload-state-done">
+                                        <input class="edit_pic" onchange="previewImage(this,'prv')" type="file" name="edit_pic">
+                                        <img class="prv" src="{{$value->pic}}">
+                                        <input class="edit_pic_id" type="hidden" value="{{$value->id}}">
+                                        <div class="info">上传成功！</div>
+                                        <a href="javascript:void(0);" class="cancel fa fa-close"></a>
+                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">商品详情</label>
                             <div class="col-sm-8">
-                                <script id="container" type="text/plain">这里写你的初始化内容</script>
+                                <script id="container" type="text/plain">{!! $datas->content !!}</script>
                             </div>
                         </div>
+                        <input name="goods_id" type="hidden" value="{{$datas->id}}">
                         {!! csrf_field() !!}
                         <div id="from_btn" class="btn btn-primary">保存</div>
                     </form>
@@ -126,6 +136,7 @@
         var thumbnailHeight = .5;
         // 当有文件添加进来的时候
         uploader.on( 'fileQueued', function( file ) {
+            console.log(file);
             var $li = $(
                     '<div id="' + file.id + '" class="file-item thumbnail">' +
                     '<img>' +
@@ -163,27 +174,126 @@
         // 文件上传重复。
         uploader.onError = function( code ) {
             if(code=='F_DUPLICATE'){
-                alert('您选择了重复的图片！');
+                swal({text:'您选择了重复的图片！',timer:2000,showConfirmButton:false});
             }
         };
         // 完成上传完了，成功或者失败。
         uploader.on( 'uploadComplete', function( file ) {
             $(".cancel").click(function () {
-                $(this).parent().remove();
-                var i = $(this).parent().attr('id');
-                uploader.removeFile(i,true);
-                $("#pics").find('#'+i+'_input').remove();
+                var this_ = $(this);
+                swal({
+                    text: '是否确定删除？删除后将无法回复！',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '是',
+                    cancelButtonText: '否'
+                }).then(function (i) {
+                    if(i==true){
+                        var e = this_.parent().attr('id');
+                        uploader.removeFile(e,true);
+                        $("#pics").find('#'+e+'_input').remove();
+                        this_.parent().remove();
+                        swal({text:"删除成功！", type:"success",timer:2000,showConfirmButton:false});
+                    }
+                });
             });
         });
+        //删除已有的图片
+        $(".cancel").click(function () {
+            var this_ = $(this);
+            var pic_id = this_.siblings('.edit_pic_id').val();
+            swal({
+                text: '是否确定删除？删除后将无法回复！',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '是',
+                cancelButtonText: '否'
+            }).then(function (i) {
+                if(i==true){
+                    $.ajax({
+                        type:'post',
+                        url:'{{url('goods/deletepic')}}',
+                        data:{'pic_id':pic_id,_token:'{{csrf_token()}}'},
+                        success:function(data){
+                            swal.close();
+                            if(data.msg_type==200){
+                                this_.parent().remove();
+                                swal({text:"删除成功！", type:"success",timer:2000,showConfirmButton:false});
+                            }else{
+                                swal({text:data.msg, type:"error",timer:2000,showConfirmButton:false});
+                            }
+                        }
+                    });
+                }
+            });
+        });
+        //修改图片
+        function previewImage(file, prv) {
+            /* file：file控件
+             * prvid: 图片预览容器
+             */
+            var tip = "上传图片的格式不对"; // 设定提示信息
+            var filters = {
+                "jpeg": "/9j/4",
+                "gif": "R0lGOD",
+                "png": "iVBORw"
+            }
+            var prvbox = $(file).next('.prc');
+            if (window.FileReader) { // html5方案
+                for (var i = 0, f; f = file.files[i]; i++) {
+                    var fr = new FileReader();
+                    fr.onload = function (e) {
+                        var src = e.target.result;
+                        if (!validateImg(src)) {
+                            swal({text:tip,timer:2000,showConfirmButton:false});
+                        } else {
+                            showPrvImg(src);
+                        }
+                    }
+                    fr.readAsDataURL(f);
+                }
+            } else { // 降级处理
+                if (!/\.jpg$|\.png$|\.gif$/i.test(file.value)) {
+                    swal({text:tip,timer:2000,showConfirmButton:false});
+                } else {
+                    showPrvImg(file.value);
+                }
+            }
+            function validateImg(data) {
+                var pos = data.indexOf(",") + 1;
+                for (var e in filters) {
+                    if (data.indexOf(filters[e]) === pos) {
+                        return e;
+                    }
+                }
+                return null;
+            }
 
+            function showPrvImg(src) {
+                swal({text:'加载中...',showConfirmButton:false});
+                prvbox.src = src;
+                var edit_pic_id = $(file).parent().children('.edit_pic_id').val();
+                $.ajax({
+                 type:'post',
+                 url:'{{url('goods/editpic')}}',
+                 data:{'edit_pic':src,'edit_pic_id':edit_pic_id,_token:'{{csrf_token()}}'},
+                 success:function(data){
+                     swal.close();
+                     if(data.msg_type==200){
+                         $(file).next().attr('src',data.data);
+                         swal({text:'修改图片成功！',type:'success',timer:2000,showConfirmButton:false});
+                     }
+                 }
+                 });
+            }
+        }
         //
-        var re = false;
         $("#from_btn").click(function () {
             var name = $("#name").val();
             var price = $("#price").val();
             var cost_price = $("#cost_price").val();
             var shown = $(".goods_form input[name=shown]:checked").val();
-            var pics = $("#pics").find('input').size();
+            var pics = $(".file-item").size();
             var content = um.getContent();
             if(name.length<=0){
                 swal({text:'请输入商品名称！',timer:2000,showConfirmButton:false});
@@ -195,18 +305,20 @@
                 swal({text:'请添加商品图！',timer:2000,showConfirmButton:false});
             }else if(content.length<=0){
                 swal({text:'请输入商品详情！',timer:2000,showConfirmButton:false});
-            }else if(re == false){
-                re = true;
+            }else{
+                swal({text:'资料提交中...',showConfirmButton:false});
                 $.ajax({
                     type:'post',
-                    url:'{{url('goods/add')}}',
+                    url:'{{url('goods/edit')}}',
                     data:$(".goods_form").serialize(),
                     success:function(data){
-                        re = false;
-                        swal({text:'保存成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
-                            window.location.href="{{url('goods/index')}}?goods_id="+data+"";
-                        });
-
+                        if(data.msg_type==200){
+                            swal({text:'修改成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
+                                window.location.href="{{url('goods/index')}}";
+                            });
+                        }else{
+                            swal({text:data.msg,type:'error',timer:2000,showConfirmButton:false});
+                        }
                     }
                 });
             }
