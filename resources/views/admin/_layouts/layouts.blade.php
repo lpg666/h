@@ -58,6 +58,21 @@
                 <li>
                     <a href="#">
                         <i class="fa fa-home"></i>
+                        <span class="nav-label">系统管理</span>
+                        <span class="fa arrow"></span>
+                    </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a class="" href="{{ url('goods/index') }}">管理员列表</a>
+                        </li>
+                        <li>
+                            <a class="" href="{{ url('goods/add') }}">角色管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-home"></i>
                         <span class="nav-label">商品管理</span>
                         <span class="fa arrow"></span>
                     </a>

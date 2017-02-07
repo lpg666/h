@@ -3,11 +3,10 @@
 @section('page_title', 'H+ 后台主题UI框架 - 编辑商品')
 
 @section('header_assets')
-    <script>window.UMEDITOR_HOME_URL="/admin/umeditor/";</script>
     <style>
         .checkbox label, .radio label{padding-left: 0;}
         .ibox{ margin-bottom: 0;}
-        #container{ width: 100%; height: 400px;}
+        #container{ width: 100%; height: auto;}
     </style>
 @endsection
 
@@ -73,7 +72,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">商品详情</label>
                             <div class="col-sm-8">
-                                <script id="container" type="text/plain">{!! $datas->content !!}</script>
+                                <script id="container" style="width:100%;" type="text/plain">{!! $datas->content !!}</script>
                             </div>
                         </div>
                         <input name="goods_id" type="hidden" value="{{$datas->id}}">
@@ -87,9 +86,12 @@
 @endsection
 
 @section('footer_assets')
+    @include('UEditor::head')
     <script>
-        var um = UM.getEditor('container');
-        um.setWidth("100%");
+        var ue = UE.getEditor('container');
+        ue.ready(function() {
+            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
+        });
         //
         var uploader = WebUploader.create({
             paste: '#uploader',
@@ -294,7 +296,7 @@
             var cost_price = $("#cost_price").val();
             var shown = $(".goods_form input[name=shown]:checked").val();
             var pics = $(".file-item").size();
-            var content = um.getContent();
+            var content = ue.getContent();
             if(name.length<=0){
                 swal({text:'请输入商品名称！',timer:2000,showConfirmButton:false});
             }else if(price.length<=0){
