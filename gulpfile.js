@@ -21,7 +21,7 @@ elixir(function(mix) {
         'admin/custom.css',
         'admin/index.css',
         'admin/sweetalert2.min.css'
-    ], 'public/admin/css');
+    ], 'public/admin/css/all.css');
 
     mix.scripts([
         'jquery.min.js',
