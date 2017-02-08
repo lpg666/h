@@ -3,11 +3,10 @@
 @section('page_title', 'H+ 后台主题UI框架 - 添加商品')
 
 @section('header_assets')
-    <script>window.UMEDITOR_HOME_URL="/admin/umeditor/";</script>
     <style>
         .checkbox label, .radio label{padding-left: 0;}
         .ibox{ margin-bottom: 0;}
-        #container{ width: 100%; height: 400px;}
+        #container{ width: 100%; height: auto; min-height: 400px;}
     </style>
 @endsection
 
@@ -64,7 +63,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">商品详情</label>
                             <div class="col-sm-8">
-                                <script id="container" type="text/plain">这里写你的初始化内容</script>
+                                <script id="container" style="width:100%;" type="text/plain">这里写你的初始化内容</script>
                             </div>
                         </div>
                         {!! csrf_field() !!}
@@ -77,9 +76,12 @@
 @endsection
 
 @section('footer_assets')
+    @include('UEditor::head')
     <script>
-        var um = UM.getEditor('container');
-        um.setWidth("100%");
+        var ue = UE.getEditor('container');
+        ue.ready(function() {
+            ue.execCommand('serverparam', '_token', '{{ csrf_token() }}');
+        });
         //
         var uploader = WebUploader.create({
             paste: '#uploader',

@@ -19,8 +19,12 @@ class OperatorRoleController extends Controller
 
     }
 
-    public function getCreate()
+    public function anyCreate(Request $request)
     {
-        return view('admin.operatorRoleCreate');
+        if ($request->isMethod('post')) {
+
+        }else{
+            return view('admin.operatorRoleCreate');
+        }
     }
 }
