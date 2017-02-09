@@ -3,7 +3,6 @@
 .red_color{ color: #ec4758;}
 .no_padding{padding: 0;}
 .no_margin{margin: 0;}
-
 /*覆盖修改*/
 .breadcrumb{padding-left: 20px;}
 
@@ -79,3 +78,7 @@
 .roleCreate_form p.m-t label{margin:0 10px 0 0; line-height: 22px;}
 .roleCreate_form p.m-t label input[type=checkbox]{float: left; margin-top: 4px;}
 .roleCreate_form #from_btn{margin-left: 15px;}
+
+@media (max-width:768px){
+    .hide_sm{ display: none;}
+}

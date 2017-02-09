@@ -43,8 +43,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 col-md-2 control-label"></label>
-                            <div id="from_btn" class="btn btn-primary">提交</div>
+                            <label class="col-sm-2 col-md-2 control-label hide_sm"></label>
+                            <button id="from_btn" class="btn btn-primary">提交</button>
                         </div>
                     </form>
                 </div>

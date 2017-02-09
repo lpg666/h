@@ -6,7 +6,7 @@
     <style>
         .checkbox label, .radio label{padding-left: 0;}
         .ibox{ margin-bottom: 0;}
-        #container{ width: 100%; height: auto;}
+        #container{ width: 100%; height: auto; min-height: 400px;}
     </style>
 @endsection
 
