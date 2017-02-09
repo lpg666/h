@@ -6,11 +6,12 @@
 @endsection
 
 @section('content')
-    <div class="row operator">
+<div class="operator">
+    <div class="row">
         <form class="form col-sm-10 col-sm-10 col-lg-8" action="" method="get">
             <div class="label-h control-label pull-left">名称：</div>
-            <div class="form_input"><input class="form-control" type="name" name="name"></div>
-            <button type="button" class="btn btn-primary search">搜索</button>
+            <div class="form_input"><input class="form-control" type="name" name="name" value="{{ request()->get('name') }}"></div>
+            <button type="submit" class="btn btn-primary search">搜索</button>
             <button type="button" class="btn btn-default reset" onclick="location.href='?'">重置</button>
             <a class="add_role btn btn-primary" href="{{ url('operator-role/create') }}"><i class="fa fa-plus"></i> 添加角色</a>
         </form>
@@ -21,7 +22,7 @@
                 <div class="ibox-title">
                     <h5>角色列表 <small></small></h5>
                 </div>
-                <div class="ibox-content">
+                <div class="ibox-content clearfix">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -33,21 +34,23 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($datas as $data)
+                        @foreach($lists as $list)
                         <tr>
-                            <td>{{$data->id}}</td>
-                            <td>{{$data->name}}</td>
-                            <td>{{$data->updated_at}}</td>
-                            <td>{{$data->created_at}}</td>
-                            <td><a href="#">编辑</a><span class="shuxian">|</span><a href="#">删除</a></td>
+                            <td>{{$list->id}}</td>
+                            <td>{{$list->name}}</td>
+                            <td>{{$list->updated_at}}</td>
+                            <td>{{$list->created_at}}</td>
+                            <td><a href="{{url('operator-role/edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a href="{{url('operator-role/destroy')}}?id={{$list->id}}">删除</a></td>
                         </tr>
                         @endforeach
                         </tbody>
                     </table>
+                    {!! $lists->links() !!}
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @section('footer_assets')

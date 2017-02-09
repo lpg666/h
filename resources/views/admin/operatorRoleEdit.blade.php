@@ -1,48 +1,53 @@
 @extends('admin._layouts.layouts')
 
-@section('page_title', 'H+ 后台主题UI框架 - 角色编辑')
+@section('page_title', 'H+ 后台主题UI框架 - 编辑角色')
 
 @section('header_assets')
 @endsection
 
 @section('content')
-    <div class="row operator">
-        <form class="col-sm-12 form" action="" method="get">
-            <div class="label-h control-label pull-left">名称：</div>
-            <div class="form_input"><input class="form-control" type="name" name="name"></div>
-            <button type="button" class="btn btn-primary search">搜索</button>
-            <button type="button" class="btn btn-default reset" onclick="location.href='?'">重置</button>
-        </form>
-    </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>上架商品 <small></small></h5>
+                    <h5>编辑角色 <small></small></h5>
                 </div>
                 <div class="ibox-content">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>名称</th>
-                            <th>更改时间</th>
-                            <th>添加时间</th>
-                            <th>操作</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($datas as $data)
-                        <tr>
-                            <td>{{$data->id}}</td>
-                            <td>{{$data->name}}</td>
-                            <td>{{$data->updated_at}}</td>
-                            <td>{{$data->created_at}}</td>
-                            <td><a href="#">编辑</a><span class="shuxian">|</span><a href="#">删除</a></td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                    <form action="" method="post" class="roleCreate_form form-horizontal" >
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">名称:</label>
+                            <div class="col-sm-10 col-md-3">
+                                <input id="name" name="name" value="{{ $data->name }}" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">菜单权限:</label>
+                            <div class="col-sm-10 col-md-9">
+                                @foreach (config('permission.menus') as $menu)
+                                    <p class="col-sm-12 no-padding m-t">
+                                    @foreach($menu as $k=>$sub_menu)
+                                        <label class="i-checks"><input type="checkbox" name="menus[]" value="{{$k}}" @if($data->menus && in_array($k,$data->menus)) checked @endif>{{$sub_menu['desc']}}</label>
+                                    @endforeach
+                                    </p>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label">操作权限:</label>
+                            <div class="col-sm-10 col-md-3">
+                                <p class="col-sm-12 no-padding m-t">
+                                    @foreach (config('permission.operations') as $k=>$operation)
+                                        <label class="i-checks"><input type="checkbox" name="operations[]" value="{{$k}}" @if($data->operations && in_array($k,$data->operations)) checked @endif>{{$operation}}</label>
+                                    @endforeach
+                                </p>
+                            </div>
+                        </div>
+                        {!! csrf_field() !!}
+                        <div class="form-group">
+                            <label class="col-sm-2 col-md-2 control-label hide_sm"></label>
+                            <div id="from_btn" class="btn btn-primary">提交</div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -50,5 +55,27 @@
 @endsection
 
 @section('footer_assets')
+    <script>
+        $(".i-checks").iCheck({
+            checkboxClass:"icheckbox_square-green"
+        });
+        var re = false;
+        $("#from_btn").click(function () {
+            if($("#name").val().length<=0){
+                swal({text:'名称不能为空！',type:'error',timer:2000,showConfirmButton:false});
+            }else{
+                $.ajax({
+                    type:'post',
+                    url:'{{url('operator-role/edit')}}?id={{$data->id}}',
+                    data:$(".roleCreate_form").serialize(),
+                    success:function(data){
+                        swal({text:'修改成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
+                            window.location.href="{{url('operator-role/index')}}";
+                        });
 
+                    }
+                });
+            }
+        });
+    </script>
 @endsection

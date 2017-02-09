@@ -161,12 +161,18 @@ html{height:100%}body.signin{height:auto;background:url(../img/login-background.
 .operator .form .form_input{ width: 150px; float: left;}
 .operator .form .search{margin-left: 15px;}
 .operator .add_role{ display: block; width: 100px; float: right;}
+.operator .add_user{display: block; width: 100px; float: right; margin-right: 15px;}
+.operator .pagination{ float: right;}
 .label-h{padding-top: 7px; padding-left: 15px;}
 
-.roleCreate_form p.m-t{margin: 7px 0 0 0;}
+.roleCreate_form p.m-t{margin: 5px 0 0 0;}
 .roleCreate_form p.m-t label{margin:0 10px 0 0; line-height: 22px;}
 .roleCreate_form p.m-t label input[type=checkbox]{float: left; margin-top: 4px;}
 .roleCreate_form #from_btn{margin-left: 15px;}
+.roleCreate_form .radio_box{padding: 0 12px;}
+.roleCreate_form .radio_box label{margin-bottom: 0;}
+.roleCreate_form .radio_box .iradio_square-green{ margin: 7px 0 0 0; float: left;}
+.roleCreate_form .radio_box span{ height: 33px; line-height: 33px; margin-right: 10px; display: inline-block; float: left;}
 
 @media (max-width:768px){
     .hide_sm{ display: none;}

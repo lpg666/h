@@ -49,13 +49,13 @@
                     <div class="logo-element">H+
                     </div>
                 </li>
-                <li>
-                    <a href="{{ url('/') }}">
+                <li class="{{Request::url() == url('/index') ? 'active' : ''}}">
+                    <a href="{{ url('/index') }}">
                         <i class="fa fa-home"></i>
                         <span class="nav-label">主页</span>
                     </a>
                 </li>
-                <li>
+                <li class="@if(Request::url() == url('goods/index') || Request::url() == url('goods/add') || Request::url() == url('goods/not-active') || Request::url() == url('goods/edit')) active @endif">
                     <a href="#">
                         <i class="fa fa-home"></i>
                         <span class="nav-label">商品管理</span>
@@ -73,7 +73,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="@if(Request::url() == url('operator/index') || Request::url() == url('operator-role/index') || Request::url() == url('operator-role/edit')) active @endif">
                     <a href="#">
                         <i class="fa fa-sun-o"></i>
                         <span class="nav-label">系统管理</span>
@@ -107,13 +107,31 @@
         </div>
         <div class="row content-tabs">
             <ol class="breadcrumb">
-                    <li>@if(getCurrentControllerName()=='Index')<a href="{{url('/')}}">主页</a>@elseif(getCurrentControllerName()=='Goods')<a href="{{url('goods/index')}}">全部商品</a>@endif</li>
-                    @if(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='anyAdd')
-                        <li><a href="#">添加商品</a></li>
+                @if(getCurrentControllerName()=='Index')
+                    <li><a href="{{url('/')}}">主页</a></li>
+                @elseif(getCurrentControllerName()=='Goods')
+                    <li><a href="{{url('goods/index')}}">商品管理</a></li>
+                    @if(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='getIndex')
+                        <li><span>全部商品</span></li>
+                    @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='anyAdd')
+                        <li><span>添加商品</span></li>
                     @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='anyEdit')
-                    <li><a href="#">编辑商品</a></li>
+                        <li><span>编辑商品</span></li>
+                    @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='getNotActive')
+                        <li><span>下架商品</span></li>
                     @endif
-                    {{--<li class="active"></li>--}}
+                @elseif(getCurrentControllerName()=='Operator' || getCurrentControllerName()=='OperatorRole')
+                    <li><a href="{{url('operator/index')}}">系统管理</a></li>
+                    @if(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='getIndex')
+                        <li><span>管理员列表</span></li>
+                    @elseif(getCurrentControllerName() == 'OperatorRole' && getCurrentMethodName()=='getIndex')
+                        <li><span>角色管理</span></li>
+                    @elseif(getCurrentControllerName() == 'OperatorRole' && getCurrentMethodName()=='anyCreate')
+                        <li><span>添加角色</span></li>
+                    @elseif(getCurrentControllerName() == 'OperatorRole' && getCurrentMethodName()=='getEdit')
+                        <li><span>编辑角色</span></li>
+                    @endif
+                @endif
             </ol>
         </div>
         <div class="row" id="content-main">

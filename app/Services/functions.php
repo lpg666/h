@@ -42,6 +42,23 @@ function success($data=array(), $msg = '成功', $msg_type = 200, $element = arr
     return response()->json($json);
 }
 
+function successRedirect($msg='成功', $redirect_url='') {
+    \Illuminate\Support\Facades\Session::flash('success_msg', $msg);
+    if ($redirect_url) {
+        return redirect($redirect_url);
+    } else {
+        return redirect()->back();
+    }
+}
+
+function errorRedirect($msg='失败', $redirect_url='') {
+    \Illuminate\Support\Facades\Session::flash('error_msg', $msg);
+    if ($redirect_url) {
+        return redirect($redirect_url);
+    } else {
+        return redirect()->back();
+    }
+}
 
 //将时间转换成刚刚、分钟、小时前
 function getTimeWord($date){
@@ -92,6 +109,22 @@ function saveUrlImage($url, $save_path) {
     fclose($tp);
     uploadUpyun(public_path($save_path), $save_path);
     return $save_path;
+}
+
+/**
+ * 获取随机字符串
+ *
+ * @param int $len 获取长度
+ * @return string
+ */
+function getRandChar($len = 6)
+{
+    $str = '';
+    $rand = 'qwertyuiopasdfghjklzxcvbnm1234567890';
+    for ($i = 0; $i < $len; $i++) {
+        $str .= $rand[rand(0, strlen($rand) - 1)];
+    }
+    return $str;
 }
 
 /**
