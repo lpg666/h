@@ -10,16 +10,16 @@
     <div class="row">
         <form class="col-sm-12 form" action="" method="get">
             <div class="label-h control-label pull-left">账号：</div>
-            <div class="form_input"><input class="form-control" type="text" name="name"></div>
+            <div class="form_input"><input class="form-control" type="text" name="name" value="{{ request()->get('name') }}"></div>
 
             <span class="label-h control-label pull-left">真实姓名：</span>
-            <div class="form_input"><input class="form-control" type="text" name="real_name"></div>
+            <div class="form_input"><input class="form-control" type="text" name="real_name" value="{{ request()->get('real_name') }}"></div>
             <span class="label-h control-label pull-left">角色：</span>
             <div class="form_input">
-                <select class="form-control" name="role">
-                    <option>请选择</option>
+                <select class="form-control" name="role_id">
+                    <option value="">请选择</option>
                     @foreach(\App\Model\OperatorRole::all() as $operatorRole)
-                    <option>{{ $operatorRole->name }}</option>
+                    <option value="{{$operatorRole->id}}" @if(request()->get('role_id') == $operatorRole->id) selected="selected" @endif>{{ $operatorRole->name }}</option>
                     @endforeach
                 </select>
             </div>

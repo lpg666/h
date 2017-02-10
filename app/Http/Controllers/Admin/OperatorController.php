@@ -14,15 +14,15 @@ class OperatorController extends Controller
         $data = Operator::with('role')->orderBy('id','desc');
         $name = $request->input('name');
         $real_name = $request->input('real_name');
-        $role = $request->input('role');
+        $role_id = $request->input('role_id');
         if (!empty($name)){
             $data->where('name','like',"%{$name}%");
         }
         if (!empty($real_name)){
-            $data->where('name','like',"%{$real_name}%");
-        }if (!empty($role)){
-        $data->where('name','like',"%{$role}%");
-    }
+            $data->where('real_name','like',"%{$real_name}%");
+        }if (!empty($role_id)){
+        $data->where('role_id','like',"%{$role_id}%");
+        }
         $lists = $data->paginate(15);
         return view('admin.operator',['lists'=>$lists]);
     }
