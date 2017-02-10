@@ -13,7 +13,7 @@
             <div class="form_input"><input class="form-control" type="name" name="name" value="{{ request()->get('name') }}"></div>
             <button type="submit" class="btn btn-primary search">搜索</button>
             <button type="button" class="btn btn-default reset" onclick="location.href='?'">重置</button>
-            <a class="add_role btn btn-primary" href="{{ url('operator-role/create') }}"><i class="fa fa-plus"></i> 添加角色</a>
+            <a class="add_role btn btn-primary" href="{{ url('operator/role-create') }}"><i class="fa fa-plus"></i> 添加角色</a>
         </form>
     </div>
     <div class="row">
@@ -34,15 +34,19 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($lists as $list)
+                        @forelse($lists as $list)
                         <tr>
                             <td>{{$list->id}}</td>
                             <td>{{$list->name}}</td>
                             <td>{{$list->updated_at}}</td>
                             <td>{{$list->created_at}}</td>
-                            <td><a href="{{url('operator-role/edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a href="{{url('operator-role/destroy')}}?id={{$list->id}}">删除</a></td>
+                            <td><a href="{{url('operator/role-edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a class="destroy">删除<input type="hidden" value="{{$list->id}}"></a></td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr class="col-lg-12">
+                            <td colspan="12" align="center">暂无记录</td>
+                        </tr>
+                        @endforelse
                         </tbody>
                     </table>
                     {!! $lists->links() !!}
@@ -54,5 +58,28 @@
 @endsection
 
 @section('footer_assets')
-
+    <script>
+        $(".destroy").click(function () {
+            var _this = $(this);
+            var id = _this.find('input').val();
+            swal({
+                text: '是否确定删除？删除后将无法回复！',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '是',
+                cancelButtonText: '否'
+            }).then(function (i) {
+                if(i==true) {
+                    $.get('{{url('operator/role-destroy')}}?id=' + id + '', function (data) {
+                        if (data.msg_type == 200) {
+                            _this.parents('tr').remove();
+                            swal({text: "删除成功！", type: "success", timer: 2000, showConfirmButton: false});
+                        } else {
+                            swal({text: data.msg, type: "error", timer: 2000, showConfirmButton: false});
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

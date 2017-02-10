@@ -1,6 +1,6 @@
 @extends('admin._layouts.layouts')
 
-@section('page_title', 'H+ 后台主题UI框架 - 主页')
+@section('page_title', 'H+ 后台主题UI框架 - 管理员列表')
 
 @section('header_assets')
 @endsection
@@ -10,13 +10,13 @@
     <div class="row">
         <form class="col-sm-12 form" action="" method="get">
             <div class="label-h control-label pull-left">账号：</div>
-            <div class="form_input"><input class="form-control" type="name"></div>
+            <div class="form_input"><input class="form-control" type="text" name="name"></div>
 
             <span class="label-h control-label pull-left">真实姓名：</span>
-            <div class="form_input"><input class="form-control" type="real_name"></div>
+            <div class="form_input"><input class="form-control" type="text" name="real_name"></div>
             <span class="label-h control-label pull-left">角色：</span>
             <div class="form_input">
-                <select class="form-control">
+                <select class="form-control" name="role">
                     <option>请选择</option>
                     @foreach(\App\Model\OperatorRole::all() as $operatorRole)
                     <option>{{ $operatorRole->name }}</option>
@@ -50,18 +50,26 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{--@foreach($lists as $list)
+                        @forelse($lists as $list)
                             <tr>
                                 <td>{{$list->id}}</td>
                                 <td>{{$list->name}}</td>
                                 <td>{{$list->real_name}}</td>
-                                <td>{{$list->role}}</td>
-                                <td><a href="{{url('operator-role/edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a href="{{url('operator-role/destroy')}}?id={{$list->id}}">删除</a></td>
+                                <td>@if($list->role) {{$list->role->name}} @endif</td>
+                                <td>{{$list->email}}</td>
+                                <td>@if($list->status ==1) 正常 @else 冻结 @endif</td>
+                                <td>{{$list->logins}}</td>
+                                <td>{{$list->last_time}}</td>
+                                <td><a href="{{url('operator/edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a class="destroy">删除<input type="hidden" value="{{$list->id}}"></a></td>
                             </tr>
-                        @endforeach--}}
+                        @empty
+                            <tr class="col-lg-12">
+                                <td colspan="12" align="center">暂无记录</td>
+                            </tr>
+                        @endforelse
                         </tbody>
                     </table>
-                    {{--{!! $lists->links() !!}--}}
+                    {!! $lists->links() !!}
                 </div>
             </div>
         </div>
@@ -70,5 +78,28 @@
 @endsection
 
 @section('footer_assets')
-
+    <script>
+        $(".destroy").click(function () {
+            var _this = $(this);
+            var id = _this.find('input').val();
+            swal({
+                text: '是否确定删除？删除后将无法回复！',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '是',
+                cancelButtonText: '否'
+            }).then(function (i) {
+                if(i==true) {
+                    $.get('{{url('operator/destroy')}}?id=' + id + '', function (data) {
+                        if (data.msg_type == 200) {
+                            _this.parents('tr').remove();
+                            swal({text: "删除成功！", type: "success", timer: 2000, showConfirmButton: false});
+                        } else {
+                            swal({text: data.msg, type: "error", timer: 2000, showConfirmButton: false});
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 @endsection

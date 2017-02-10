@@ -8,17 +8,17 @@
 return [
     'menus' => [
         [
-            '11' => ['name' => '', 'desc' => '主页', 'link' => '/index'],
+            '11' => ['name' => 'index', 'desc' => '主页', 'link' => '/index'],
         ],
         [
-            '21' => ['name' => '', 'desc' => '全部商品', 'link' => '/goods/index'],
-            '22' => ['name' => '', 'desc' => '添加商品', 'link' => '/goods/add'],
-            '23' => ['name' => '', 'desc' => '下架商品', 'link' => '/goods/not-active'],
+            '21' => ['name' => 'goods', 'desc' => '全部商品', 'link' => '/goods/index'],
+            '22' => ['name' => 'goods', 'desc' => '添加商品', 'link' => '/goods/add'],
+            '23' => ['name' => 'goods', 'desc' => '下架商品', 'link' => '/goods/not-active'],
         ],
         [
-            '31' => ['name' => '', 'desc' => '文章管理', 'link' => '/article/index'],
-            '32' => ['name' => '', 'desc' => '文章分类', 'link' => '/article/types'],
-        ]
+            '31' => ['name' => 'operator', 'desc' => '管理员列表', 'link' => '/operator/index'],
+            '32' => ['name' => 'operator', 'desc' => '角色管理', 'link' => '/operator/role-index'],
+        ],
     ],
     'operations' => [
         'shopUpdate' => '编辑商品',

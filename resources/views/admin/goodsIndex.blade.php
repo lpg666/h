@@ -10,7 +10,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>上架商品 <small></small></h5>
+                    <h5>全部商品 <small></small></h5>
                 </div>
                 <div class="ibox-content">
                     <table class="table table-bordered">

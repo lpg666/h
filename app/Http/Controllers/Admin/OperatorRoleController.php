@@ -53,9 +53,9 @@ class OperatorRoleController extends Controller
     {
         $id = $request->get('id');
         if(false !== OperatorRole::destroy($id)){
-            return successRedirect();
+            return success();
         }else{
-            return errorRedirect();
+            return error();
         }
     }
 }

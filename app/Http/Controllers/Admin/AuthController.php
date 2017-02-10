@@ -3,10 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Model\User;
+use App\Model\Operator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -25,22 +23,26 @@ class AuthController extends Controller
     {
         $this->validate($request,[
             'name' => 'required',
-            'password' => 'required|min:6'
+            'password' => 'required'
         ]);
         $name = $request->input('name');
         $password = $request->input('password');
-        $member = User::where('name',$name)->first();
-        if (empty($member)){
+        $operator = Operator::where('name', $name)->where('status', 1)->with('role')->first();
+        if (empty($operator)){
             $json['msg_type'] = -1;
             $json['msg'] = '用户不存在';
             return response()->json($json);
         }
+        $password = md5(md5($password).$operator->salt);
 
-        if(password_verify($password,$member->password)){
+        if($password == $operator->password){
+            session(['operator'=>$operator]);
+            $operator->logins =  $operator->logins+1;
+            $operator->last_time = time();
+            $operator->last_ip = $request->getClientIp();
+            $operator->save();
             $json['msg_type'] = 1;
             $json['msg'] = '登录成功';
-            $member->save();
-            loginSession($member);
             return response()->json($json);
         }
         $json['msg_type'] = -2;
@@ -54,6 +56,7 @@ class AuthController extends Controller
      * @return Response
      */
 
+    /**
     public function getRegister(Request $request)
     {
         $referer = $request->get('referer', url('/'));
@@ -86,6 +89,7 @@ class AuthController extends Controller
         }
 
     }
+     * /
 
     /**
      * 退出登陆
@@ -94,7 +98,7 @@ class AuthController extends Controller
 
     public function getLogout()
     {
-        session()->forget('member');
+        session()->forget('operator');
         return redirect('auth/login');
     }
 }

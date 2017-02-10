@@ -65,13 +65,19 @@
             }else{
                 $.ajax({
                     type:'post',
-                    url:'{{url('operator-role/create')}}',
+                    url:'{{url('operator/role-create')}}',
                     data:$(".roleCreate_form").serialize(),
                     success:function(data){
-                        swal({text:'添加成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
-                            window.location.href="{{url('operator-role/index')}}";
-                        });
-
+                        if(data.msg_type==200) {
+                            swal({
+                                text: '添加成功！',
+                                type: 'success',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(function () {
+                                window.location.href = "{{url('operator/role-index')}}";
+                            });
+                        }
                     }
                 });
             }

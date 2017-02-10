@@ -34,7 +34,7 @@
             {!! csrf_field() !!}
             <button type="button" class="btn btn-primary block full-width m-b">登 录</button>
             <p class="text-muted text-center">
-                {{--<a href="login.html#"><small>忘记密码了？</small></a> | --}}<a href="{{url('auth/register')}}">注册一个新账号</a>
+                {{--<a href="login.html#"><small>忘记密码了？</small></a> | <a href="{{url('auth/register')}}">注册一个新账号</a>--}}
             </p>
 
         </form>
@@ -47,8 +47,6 @@
             swal({text:'用户名不能为空！',timer:2000,showConfirmButton:false});
         }else if($(".pass").val().length<=0){
             swal({text:'密码不能为空！',timer:2000,showConfirmButton:false});
-        }else if($(".pass").val().length<6){
-            swal({text:'密码长度最少为6！',timer:2000,showConfirmButton:false});
         }else{
             $.ajax({
                 type:'post',
@@ -63,8 +61,7 @@
                     }else{
                         swal({text:data.msg,type:'error',timer:2000,showConfirmButton:false});
                     }
-                },
-                error: function(request) {}
+                }
             });
         }
     });

@@ -66,12 +66,19 @@
             }else{
                 $.ajax({
                     type:'post',
-                    url:'{{url('operator-role/edit')}}?id={{$data->id}}',
+                    url:'{{url('operator/role-edit')}}?id={{$data->id}}',
                     data:$(".roleCreate_form").serialize(),
                     success:function(data){
-                        swal({text:'修改成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
-                            window.location.href="{{url('operator-role/index')}}";
-                        });
+                        if(data.msg_type==200) {
+                            swal({
+                                text: '修改成功！',
+                                type: 'success',
+                                timer: 2000,
+                                showConfirmButton: false
+                            }).then(function () {
+                                window.location.href = "{{url('operator/role-index')}}";
+                            });
+                        }
 
                     }
                 });
