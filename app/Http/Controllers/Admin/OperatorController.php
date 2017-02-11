@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Model\Operator;
 use App\Model\OperatorRole;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
-class OperatorController extends Controller
+class OperatorController extends AdminController
 {
     public function getIndex(Request $request)
     {
@@ -85,14 +84,14 @@ class OperatorController extends Controller
         $id = $request->get('id');
         $is_admin = Operator::find($id);
         if($is_admin->is_admin == 1){
-            return error('该账号无法被删除！');
-        }else{
-            if(false !== Operator::destroy($id)){
-                return success();
-            }else{
-                return error();
-            }
+            return error('该账号无法被删除');
         }
+        if(false !== Operator::destroy($id)){
+            return success();
+        }else{
+            return error();
+        }
+
     }
 
     /**
@@ -114,6 +113,12 @@ class OperatorController extends Controller
         $id = $request->input('id');
         if ($request->isMethod('post')) {
             $data = $request->except(['_token']);
+            if(empty($data['menus'])){
+                $data['menus'] = null;
+            }
+            if(empty($data['operations'])){
+                $data['operations'] = null;
+            }
             if(false !== OperatorRole::find($id)->update($data)){
                 return success();
             }else{

@@ -195,7 +195,7 @@
                         uploader.removeFile(e,true);
                         $("#pics").find('#'+e+'_input').remove();
                         this_.parent().remove();
-                        swal({text:"删除成功！", type:"success",timer:2000,showConfirmButton:false});
+                        swal({text:"删除成功", type:"success",timer:2000,showConfirmButton:false});
                     }
                 });
             });
@@ -220,7 +220,7 @@
                             swal.close();
                             if(data.msg_type==200){
                                 this_.parent().remove();
-                                swal({text:"删除成功！", type:"success",timer:2000,showConfirmButton:false});
+                                swal({text:"删除成功", type:"success",timer:2000,showConfirmButton:false});
                             }else{
                                 swal({text:data.msg, type:"error",timer:2000,showConfirmButton:false});
                             }
@@ -283,7 +283,7 @@
                      swal.close();
                      if(data.msg_type==200){
                          $(file).next().attr('src',data.data);
-                         swal({text:'修改图片成功！',type:'success',timer:2000,showConfirmButton:false});
+                         swal({text:'修改图片成功',type:'success',timer:2000,showConfirmButton:false});
                      }
                  }
                  });
@@ -298,15 +298,15 @@
             var pics = $(".file-item").size();
             var content = ue.getContent();
             if(name.length<=0){
-                swal({text:'请输入商品名称！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品名称',timer:2000,showConfirmButton:false});
             }else if(price.length<=0){
-                swal({text:'请输入商品售价！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品售价',timer:2000,showConfirmButton:false});
             }else if(cost_price.length<=0){
-                swal({text:'请输入商品成本价！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品成本价',timer:2000,showConfirmButton:false});
             }else if(pics<=0){
-                swal({text:'请添加商品图！',timer:2000,showConfirmButton:false});
+                swal({text:'请添加商品图',timer:2000,showConfirmButton:false});
             }else if(content.length<=0){
-                swal({text:'请输入商品详情！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品详情',timer:2000,showConfirmButton:false});
             }else{
                 swal({text:'资料提交中...',showConfirmButton:false});
                 $.ajax({
@@ -315,7 +315,7 @@
                     data:$(".goods_form").serialize(),
                     success:function(data){
                         if(data.msg_type==200){
-                            swal({text:'修改成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
+                            swal({text:'修改成功',type:'success',timer:2000,showConfirmButton:false}).then(function () {
                                 window.location.href="{{url('goods/index')}}";
                             });
                         }else{

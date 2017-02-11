@@ -75,25 +75,22 @@
 
 @section('footer_assets')
     <script>
-        $(".i-checks").iCheck({
-            radioClass:"iradio_square-green"
-        });
         $("#from_btn").click(function () {
             console.log($("#pass").val()==$("#pass_c").val());
             if($("#name").val().length<=0){
-                swal({text:'账号不能为空！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'账号不能为空',type:'error',timer:2000,showConfirmButton:false});
             }else if($("#real_name").val().length<=0){
-                swal({text:'真实姓名不能为空！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'真实姓名不能为空',type:'error',timer:2000,showConfirmButton:false});
             }else if($("#role_id").val().length<=0){
-                swal({text:'角色不能为空！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'角色不能为空',type:'error',timer:2000,showConfirmButton:false});
             }else if($("#email").val().length<=0){
-                swal({text:'Email不能为空！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'Email不能为空',type:'error',timer:2000,showConfirmButton:false});
             }else if($("#pass").val().length<=0){
-                swal({text:'密码不能为空！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'密码不能为空',type:'error',timer:2000,showConfirmButton:false});
             }else if($("#pass_c").val().length<=0){
-                swal({text:'重复密码不能为空！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'重复密码不能为空',type:'error',timer:2000,showConfirmButton:false});
             }else if($("#pass").val() !== $("#pass_c").val()){
-                swal({text:'两次密码不一致！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'两次密码不一致',type:'error',timer:2000,showConfirmButton:false});
             }else{
                 $.ajax({
                     type:'post',
@@ -101,7 +98,7 @@
                     data:$(".roleCreate_form").serialize(),
                     success:function(data){
                         if(data.msg_type==200){
-                            swal({text:'添加成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
+                            swal({text:'添加成功',type:'success',timer:2000,showConfirmButton:false}).then(function () {
                                 window.location.href="{{url('operator/index')}}";
                             });
                         }

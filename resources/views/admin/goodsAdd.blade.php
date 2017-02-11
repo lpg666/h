@@ -188,15 +188,15 @@
             var pics = $("#pics").find('input').size();
             var content = um.getContent();
             if(name.length<=0){
-                swal({text:'请输入商品名称！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品名称',timer:2000,showConfirmButton:false});
             }else if(price.length<=0){
-                swal({text:'请输入商品售价！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品售价',timer:2000,showConfirmButton:false});
             }else if(cost_price.length<=0){
-                swal({text:'请输入商品成本价！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品成本价',timer:2000,showConfirmButton:false});
             }else if(pics<=0){
-                swal({text:'请添加商品图！',timer:2000,showConfirmButton:false});
+                swal({text:'请添加商品图',timer:2000,showConfirmButton:false});
             }else if(content.length<=0){
-                swal({text:'请输入商品详情！',timer:2000,showConfirmButton:false});
+                swal({text:'请输入商品详情',timer:2000,showConfirmButton:false});
             }else if(re == false){
                 re = true;
                 $.ajax({
@@ -205,7 +205,7 @@
                     data:$(".goods_form").serialize(),
                     success:function(data){
                         re = false;
-                        swal({text:'保存成功！',type:'success',timer:2000,showConfirmButton:false}).then(function () {
+                        swal({text:'保存成功',type:'success',timer:2000,showConfirmButton:false}).then(function () {
                             window.location.href="{{url('goods/index')}}?goods_id="+data+"";
                         });
 

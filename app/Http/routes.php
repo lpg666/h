@@ -16,6 +16,7 @@ Route::group(['namespace' => 'Admin', 'domain' => envDomain('gm'), 'as' => 'admi
         Route::get('/',function(){ return redirect('index');});
         Route::controller('index', 'IndexController');
         Route::controller('goods', 'GoodsController');
+        Route::controller('order', 'OrderController');
         Route::controller('operator', 'OperatorController');
     });
 

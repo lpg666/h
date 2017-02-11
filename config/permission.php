@@ -16,12 +16,20 @@ return [
             '23' => ['name' => 'goods', 'desc' => '下架商品', 'link' => '/goods/not-active'],
         ],
         [
-            '31' => ['name' => 'operator', 'desc' => '管理员列表', 'link' => '/operator/index'],
-            '32' => ['name' => 'operator', 'desc' => '角色管理', 'link' => '/operator/role-index'],
+            '31' => ['name' => 'order', 'desc' => '订单管理', 'link' => '/order/index'],
+        ],
+        [
+            '41' => ['name' => 'data', 'desc' => '数据统计', 'link' => '/data/index'],
+        ],
+        [
+            '51' => ['name' => 'operator', 'desc' => '管理员列表', 'link' => '/operator/index'],
+            '52' => ['name' => 'operator', 'desc' => '角色管理', 'link' => '/operator/role-index'],
         ],
     ],
     'operations' => [
-        'shopUpdate' => '编辑商品',
+        'shopActivate' => '上架商品',
+        'shopFrozen' => '下架商品',
+        'shopEdit' => '编辑商品',
         'shopDestroy' => '删除商品',
     ]
 ];

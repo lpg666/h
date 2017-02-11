@@ -98,6 +98,7 @@ html{height:100%}body.signin{height:auto;background:url(../img/login-background.
 /*商品管理*/
 
 .shuxian{ margin: 0 10px;}
+.goods .pagination{float: right;}
 .goods_form .btn{ margin: 10px auto 5px auto; display: block; width: 100px;}
 .goods_form .file-item{position: relative; width: 200px; height: 200px; overflow: hidden; margin-right: 20px; float: left;}
 .goods_form .info{ width: 100%; text-align: center; height: 30px; line-height: 30px; background: rgba(0,0,0,.6); color: #fff; position: absolute; bottom: 0; left: 0;}

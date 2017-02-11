@@ -93,7 +93,7 @@
                     $.get('{{url('operator/destroy')}}?id=' + id + '', function (data) {
                         if (data.msg_type == 200) {
                             _this.parents('tr').remove();
-                            swal({text: "删除成功！", type: "success", timer: 2000, showConfirmButton: false});
+                            swal({text: "删除成功", type: "success", timer: 2000, showConfirmButton: false});
                         } else {
                             swal({text: data.msg, type: "error", timer: 2000, showConfirmButton: false});
                         }

@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 col-md-2 control-label">操作权限:</label>
-                            <div class="col-sm-10 col-md-3">
+                            <div class="col-sm-10 col-md-9">
                                 <p class="col-sm-12 no-padding m-t">
                                     @foreach (config('permission.operations') as $k=>$operation)
                                         <label class="i-checks"><input type="checkbox" name="operations[]" value="{{$k}}" @if($data->operations && in_array($k,$data->operations)) checked @endif>{{$operation}}</label>
@@ -56,13 +56,9 @@
 
 @section('footer_assets')
     <script>
-        $(".i-checks").iCheck({
-            checkboxClass:"icheckbox_square-green"
-        });
-        var re = false;
         $("#from_btn").click(function () {
             if($("#name").val().length<=0){
-                swal({text:'名称不能为空！',type:'error',timer:2000,showConfirmButton:false});
+                swal({text:'名称不能为空',type:'error',timer:2000,showConfirmButton:false});
             }else{
                 $.ajax({
                     type:'post',
@@ -71,7 +67,7 @@
                     success:function(data){
                         if(data.msg_type==200) {
                             swal({
-                                text: '修改成功！',
+                                text: '修改成功',
                                 type: 'success',
                                 timer: 2000,
                                 showConfirmButton: false

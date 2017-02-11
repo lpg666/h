@@ -6,13 +6,13 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row goods">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
                     <h5>上架商品 <small></small></h5>
                 </div>
-                <div class="ibox-content">
+                <div class="ibox-content clearfix">
                     <table class="table table-bordered">
                         <thead>
                         <tr>
@@ -26,7 +26,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($goods as $good)
+                        @forelse($goods as $good)
                         <tr>
                             <td>{{ $good->id }}</td>
                             <td>{{ $good->goods_name }}</td>
@@ -34,12 +34,16 @@
                             <td>{{ $good->cost_price }}</td>
                             <td>{{ date('Y:m:d H:i:s',$good->add_time) }}</td>
                             <td>@if($good->shown==1) <span class="green_color">已上架</span> @else <span class="red_color">已下架</span> @endif</td>
-                            <td><a class="shop_ban" href="#">上架</a><span class="shuxian">|</span><a class="shop_edit" href="{{url('goods/edit')}}?goods_id={{$good->id}}">编辑</a><span class="shuxian">|</span><a class="shop_delete" href="#">删除</a></td>
+                            <td><input type="hidden" value="{{$good->id}}"><a class="shop_ban activate">上架</a><span class="shuxian">|</span><a class="shop_edit" href="{{url('goods/edit')}}?goods_id={{$good->id}}">编辑</a><span class="shuxian">|</span><a class="shop_delete" href="#">删除</a></td>
                         </tr>
-                        @endforeach
+                        @empty
+                            <tr class="col-lg-12">
+                                <td colspan="12" align="center">暂无记录</td>
+                            </tr>
+                        @endforelse
                         </tbody>
                     </table>
-
+                    {!! $goods->links() !!}
                 </div>
             </div>
         </div>
@@ -47,5 +51,18 @@
 @endsection
 
 @section('footer_assets')
-
+    <script>
+        $(".activate").click(function () {
+            var _this = $(this);
+            var id = _this.parents('td').find('input').val();
+            $.get('{{url('goods/activate')}}?id=' + id + '', function (data) {
+                if (data.msg_type == 200) {
+                    _this.parents('tr').remove();
+                    swal({text: "上架成功", type: "success", timer: 2000, showConfirmButton: false});
+                } else {
+                    swal({text: data.msg, type: "error", timer: 2000, showConfirmButton: false});
+                }
+            });
+        });
+    </script>
 @endsection

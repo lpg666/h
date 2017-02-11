@@ -1,16 +1,15 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Model\ShopGoods;
 use App\Model\ShopGoodsPic;
 use Illuminate\Http\Request;
 
-class GoodsController extends Controller
+class GoodsController extends AdminController
 {
     public function getIndex()
     {
-        $goods = ShopGoods::where('shown',1)->orderBy('id','asc')->get();
+        $goods = ShopGoods::where('shown',1)->orderBy('id','asc')->paginate(15);
         return view('admin.goodsIndex',['goods'=>$goods]);
     }
 
@@ -60,7 +59,7 @@ class GoodsController extends Controller
             return error('上传图片失败');
         }
         if (!in_array(strtoupper($file->getClientOriginalExtension()), $ext)) {
-            return error('上传图片类型不符合！');
+            return error('上传图片类型不符合');
         }
         $file_path = '/uploadfiles/admin/';
         $filename = md5(time() . rand(1, 1000)) . '.' . $file->getClientOriginalExtension();
@@ -73,6 +72,9 @@ class GoodsController extends Controller
     {
         $goods_id = $request->input('goods_id');
         if ($request->isMethod('post')) {
+            if (false === $this->checkOperation('shopEdit')){
+                return error('无此权限');
+            }
             $this->validate($request,[
                 'goods_name' => 'required', 'price' => 'required',  'cost_price' => 'required', 'shown' => 'required',
                 'editorValue' => 'required'
@@ -87,7 +89,7 @@ class GoodsController extends Controller
             ];
             $goods_edit = ShopGoods::where('id',$goods_id)->update($data);
             if(false === $goods_edit){
-                return error('更新失败！');
+                return error('更新失败');
             }else{
                 $goods_addpic = $request->input('pics');
                 if(!empty($goods_addpic)){
@@ -145,7 +147,7 @@ class GoodsController extends Controller
         }else{
             $del = unlink(public_path($pic_path->pic));
             if (false === $del){
-                return error('删除失败！');
+                return error('删除失败');
             }else{
                 $pic_path->delete();
                 return success();
@@ -155,7 +157,35 @@ class GoodsController extends Controller
 
     public function getNotActive()
     {
-        $goods = ShopGoods::where('shown',0)->orderBy('id','asc')->get();
+        $goods = ShopGoods::where('shown',0)->orderBy('id','asc')->paginate(15);
         return view('admin.goodsNotActive',['goods'=>$goods]);
+    }
+
+    public function getActivate(Request $request){
+        if(false === $this->checkOperation('shopActivate'))
+        {
+            return error('无此权限');
+        }
+        $id = $request->input('id');
+        if(false !== ShopGoods::where('id',$id)->update(['shown'=>1]))
+        {
+            return success();
+        }else{
+            return error('上架失败');
+        }
+    }
+
+    public function getFrozen(Request $request){
+        if(false === $this->checkOperation('shopFrozen'))
+        {
+            return error('无此权限');
+        }
+        $id = $request->input('id');
+        if(false !== ShopGoods::where('id',$id)->update(['shown'=>0]))
+        {
+            return success();
+        }else{
+            return error('下架失败');
+        }
     }
 }

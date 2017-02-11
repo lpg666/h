@@ -82,15 +82,23 @@
                     @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='getNotActive')
                         <li><span>下架商品</span></li>
                     @endif
-                @elseif(getCurrentControllerName()=='Operator' || getCurrentControllerName()=='OperatorRole')
+                @elseif(getCurrentControllerName()=='Order')
+                    <li><a href="{{url('order/index')}}">订单管理</a></li>
+                @elseif(getCurrentControllerName()=='Operator')
                     <li><a href="{{url('operator/index')}}">系统管理</a></li>
                     @if(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='getIndex')
                         <li><span>管理员列表</span></li>
-                    @elseif(getCurrentControllerName() == 'OperatorRole' && getCurrentMethodName()=='getIndex')
+                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='getRoleIndex')
                         <li><span>角色管理</span></li>
-                    @elseif(getCurrentControllerName() == 'OperatorRole' && getCurrentMethodName()=='anyCreate')
+                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyCreate')
+                        <li><span>添加用户</span></li>
+                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyEdit')
+                        <li><span>编辑用户</span></li>
+                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='getIndex')
+                        <li><span>角色管理</span></li>
+                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyRoleCreate')
                         <li><span>添加角色</span></li>
-                    @elseif(getCurrentControllerName() == 'OperatorRole' && getCurrentMethodName()=='anyEdit')
+                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyRoleEdit')
                         <li><span>编辑角色</span></li>
                     @endif
                 @endif

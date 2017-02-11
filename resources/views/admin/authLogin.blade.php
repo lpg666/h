@@ -44,9 +44,9 @@
 <script>
     $(".btn").click(function () {
         if($(".name").val().length<=0){
-            swal({text:'用户名不能为空！',timer:2000,showConfirmButton:false});
+            swal({text:'用户名不能为空',timer:2000,showConfirmButton:false});
         }else if($(".pass").val().length<=0){
-            swal({text:'密码不能为空！',timer:2000,showConfirmButton:false});
+            swal({text:'密码不能为空',timer:2000,showConfirmButton:false});
         }else{
             $.ajax({
                 type:'post',
