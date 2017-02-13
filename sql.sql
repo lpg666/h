@@ -46,3 +46,40 @@ CREATE TABLE `phone_models` (
   `name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `phone_capacitys` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `capacity` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `model_capacity` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `phone_model_id` int(11) NOT NULL,
+  `phone_capacity_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `phone_orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `model` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `color` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `capacity` int(11) NOT NULL,
+  `remarks` text COLLATE utf8_unicode_ci,
+  `price` decimal(10,2) NOT NULL DEFAULT '0.00',
+  `state` int(11) NOT NULL DEFAULT '1',
+  `ip` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `agent` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `phone_order_states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
