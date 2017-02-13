@@ -42,7 +42,15 @@
 </div>
 <script src="{{ elixir('admin/js/app.js') }}"></script>
 <script>
+    $(document).keydown(function (e) {
+        if(e.keyCode==13){
+            ajax();
+        }
+    });
     $(".btn").click(function () {
+        ajax();
+    });
+    function ajax() {
         if($(".name").val().length<=0){
             swal({text:'用户名不能为空',timer:2000,showConfirmButton:false});
         }else if($(".pass").val().length<=0){
@@ -64,7 +72,7 @@
                 }
             });
         }
-    });
+    }
 </script>
 </body>
 </html>

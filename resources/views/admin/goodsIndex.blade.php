@@ -37,9 +37,7 @@
                             <td><a class="shop_ban frozen">下架</a><span class="shuxian">|</span><a class="shop_edit" href="{{ url('goods/edit') }}?goods_id={{$good->id}}">编辑</a><span class="shuxian">|</span><a class="shop_delete" href="#">删除</a></td>
                         </tr>
                         @empty
-                        <tr class="col-lg-12">
-                            <td colspan="12" align="center">暂无记录</td>
-                        </tr>
+                        <td colspan="12" align="center">暂无记录</td>
                         @endforelse
                         </tbody>
                     </table>

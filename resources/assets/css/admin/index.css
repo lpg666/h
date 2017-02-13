@@ -1,6 +1,8 @@
 /*通用块*/
 .green_color{ color: #18a689;}
 .red_color{ color: #ec4758;}
+.yellow_color{ color: #f7a54a;}
+.blue_color{ color: #1c84c6;}
 .no_padding{padding: 0;}
 .no_margin{margin: 0;}
 /*覆盖修改*/
@@ -85,6 +87,19 @@
 .roleCreate_form .radio_box label{margin-bottom: 0;}
 .roleCreate_form .radio_box .iradio_square-green{ margin: 7px 0 0 0; float: left;}
 .roleCreate_form .radio_box span{ height: 33px; line-height: 33px; margin-right: 10px; display: inline-block; float: left;}
+
+/**/
+.order .form{ margin-top: 30px; margin-bottom: 30px; padding-left: 15px; float: left;}
+.order .form .form_input{ width: 150px; float: left;}
+.order .form .search{margin-left: 55px;}
+.order .form .form-control{ height: 34px; width: 150px;}
+.order .add_role{ display: block; width: 100px; float: right;}
+.order .add_user{display: block; width: 100px; float: right; margin-right: 15px;}
+.order .pagination{ float: right;}
+.label-h{padding-top: 7px; padding-left: 15px;}
+.order_form .sp_zi{margin-top: 8px; font-size: 13px;}
+.order_form .i-checks{ margin: 6px 10px 0 0;}
+
 
 @media (max-width:768px){
     .hide_sm{ display: none;}

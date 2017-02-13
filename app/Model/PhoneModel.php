@@ -13,4 +13,9 @@ class PhoneModel extends Model
     {
         return $this->belongsToMany('App\Model\PhoneColor','model_color','phone_model_id','phone_color_id');
     }
+
+    public function capacity()
+    {
+        return $this->belongsToMany('App\Model\PhoneCapacity','model_capacity','phone_model_id','phone_capacity_id');
+    }
 }

@@ -51,21 +51,19 @@
                         </thead>
                         <tbody>
                         @forelse($lists as $list)
-                            <tr>
-                                <td>{{$list->id}}</td>
-                                <td>{{$list->name}}</td>
-                                <td>{{$list->real_name}}</td>
-                                <td>@if($list->role) {{$list->role->name}} @endif</td>
-                                <td>{{$list->email}}</td>
-                                <td>@if($list->status ==1) 正常 @else 冻结 @endif</td>
-                                <td>{{$list->logins}}</td>
-                                <td>{{$list->last_time}}</td>
-                                <td><a href="{{url('operator/edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a class="destroy">删除<input type="hidden" value="{{$list->id}}"></a></td>
-                            </tr>
+                        <tr>
+                            <td>{{$list->id}}</td>
+                            <td>{{$list->name}}</td>
+                            <td>{{$list->real_name}}</td>
+                            <td>@if($list->role) {{$list->role->name}} @endif</td>
+                            <td>{{$list->email}}</td>
+                            <td>@if($list->status ==1) 正常 @else 冻结 @endif</td>
+                            <td>{{$list->logins}}</td>
+                            <td>{{$list->last_time}}</td>
+                            <td><a href="{{url('operator/edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a class="destroy">删除<input type="hidden" value="{{$list->id}}"></a></td>
+                        </tr>
                         @empty
-                            <tr class="col-lg-12">
-                                <td colspan="12" align="center">暂无记录</td>
-                            </tr>
+                        <td colspan="12" align="center">暂无记录</td>
                         @endforelse
                         </tbody>
                     </table>

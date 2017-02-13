@@ -20,7 +20,8 @@ elixir(function(mix) {
         'admin/login.min.css',
         'admin/custom.css',
         'admin/index.css',
-        'admin/sweetalert2.min.css'
+        'admin/sweetalert2.min.css',
+        'admin/datepicker3.css'
     ], 'public/admin/css/all.css');
 
     mix.scripts([
@@ -35,6 +36,7 @@ elixir(function(mix) {
         'icheck.min.js',
         'webuploader.min.js',
         'sweetalert2.min.js',
+        'bootstrap-datepicker.js',
         'es6-promise.min.js'
     ], 'public/admin/js/app.js');
 
