@@ -189,6 +189,9 @@ html{height:100%}body.signin{height:auto;background:url(../img/login-background.
 .order_form .sp_zi{margin-top: 8px; font-size: 13px;}
 .order_form .i-checks{ margin: 6px 10px 0 0;}
 
+/**/
+.data #chart-panel{ width: 100%; height:400px; padding: 0 15px;}
+
 
 @media (max-width:768px){
     .hide_sm{ display: none;}

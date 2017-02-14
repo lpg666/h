@@ -22,7 +22,7 @@ class OrderController extends AdminController
         }
     }
 
-    public function getIndex(Request $request)
+    public function getPhoneIndex(Request $request)
     {
         $sorting_field = $request->input('sorting_field') ? : 'id';
         $sorting_method = $request->input('sorting_method') ? : 'asc';
@@ -52,10 +52,10 @@ class OrderController extends AdminController
             $data->where('created_at','<=',$end);
         }
         $lists = $data->paginate(15);
-        return view('admin.orderIndex',['lists'=>$lists]);
+        return view('admin.orderPhoneIndex',['lists'=>$lists]);
     }
 
-    public function anyEdit(Request $request)
+    public function anyPhoneEdit(Request $request)
     {
         $id = $request->input('id');
         if($request->isMethod('post')){
@@ -68,7 +68,7 @@ class OrderController extends AdminController
             }
         }else{
             $data = PhoneOrder::find($id);
-            return view('admin.orderEdit',['data'=>$data]);
+            return view('admin.orderPhoneEdit',['data'=>$data]);
         }
     }
 }

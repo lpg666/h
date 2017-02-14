@@ -37,6 +37,7 @@ elixir(function(mix) {
         'webuploader.min.js',
         'sweetalert2.min.js',
         'bootstrap-datepicker.js',
+        'echarts.common.min.js',
         'es6-promise.min.js'
     ], 'public/admin/js/app.js');
 

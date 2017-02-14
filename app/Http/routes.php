@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Admin', 'domain' => envDomain('gm'), 'as' => 'admi
         Route::controller('index', 'IndexController');
         Route::controller('goods', 'GoodsController');
         Route::controller('order', 'OrderController');
+        Route::controller('data', 'DataController');
         Route::controller('operator', 'OperatorController');
     });
 

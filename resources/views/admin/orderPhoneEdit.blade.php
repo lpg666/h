@@ -1,6 +1,6 @@
 @extends('admin._layouts.layouts')
 
-@section('page_title', 'H+ 后台主题UI框架 - 编辑订单')
+@section('page_title', 'H+ 后台主题UI框架 - 编辑手机订单')
 
 @section('header_assets')
 @endsection

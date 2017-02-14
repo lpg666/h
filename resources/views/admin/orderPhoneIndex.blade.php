@@ -1,6 +1,6 @@
 @extends('admin._layouts.layouts')
 
-@section('page_title', 'H+ 后台主题UI框架 - 全部订单')
+@section('page_title', 'H+ 后台主题UI框架 - 手机订单')
 
 @section('header_assets')
 @endsection
@@ -79,7 +79,7 @@
                                     <td>{{$list->price}}</td>
                                     <td>{{$list->created_at}}</td>
                                     <td class="@if($list->state==1) red_color @elseif($list->state==2) yellow_color @elseif($list->state==3) blue_color @elseif($list->state==4) green_color @endif">{{$list->states->name}}</td>
-                                    <td><a href="{{url('order/edit')}}?id={{$list->id}}&sorting_field={{request()->get('state')}}">编辑</a></td>
+                                    <td><a href="{{url('order/phone-edit')}}?id={{$list->id}}&sorting_field={{request()->get('state')}}">编辑</a></td>
                                 </tr>
                             @empty
                                 <td colspan="12" align="center">暂无记录</td>

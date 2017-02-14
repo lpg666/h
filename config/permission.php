@@ -16,10 +16,10 @@ return [
             '23' => ['name' => 'goods', 'desc' => '下架商品', 'link' => '/goods/not-active'],
         ],
         [
-            '31' => ['name' => 'order', 'desc' => '订单管理', 'link' => '/order/index'],
+            '31' => ['name' => 'order', 'desc' => '手机订单管理', 'link' => '/order/phone-index'],
         ],
         [
-            '41' => ['name' => 'data', 'desc' => '数据统计', 'link' => '/data/index'],
+            '41' => ['name' => 'data', 'desc' => '手机数据统计', 'link' => '/data/phone-index'],
         ],
         [
             '51' => ['name' => 'operator', 'desc' => '管理员列表', 'link' => '/operator/index'],
