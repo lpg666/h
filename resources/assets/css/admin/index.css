@@ -101,7 +101,8 @@
 .order_form .i-checks{ margin: 6px 10px 0 0;}
 
 /**/
-.data #chart-panel{ width: 100%; height:400px; padding: 0 15px;}
+.data #chart-panel{ width: 100%; height:400px; padding: 0 15px;
+}
 
 
 @media (max-width:768px){
