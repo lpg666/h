@@ -7,6 +7,7 @@ class PhoneOrder extends Model
 {
     protected $table = 'phone_orders';
     protected $guarded = ['id'];
+    public $timestamps = false;
 
     public function models() {
         return $this->belongsTo('App\Model\PhoneModel', 'model', 'id');

@@ -31,7 +31,7 @@
                 trigger: 'axis'
             },
             legend: {
-                data:['订单数','签收数']
+                data:['订单数']
             },
             toolbox: {
                 show: true,
@@ -42,8 +42,7 @@
                 }
             },
             xAxis:  {
-                name: '天',
-                type: 'category',
+                type: 'time',
                 boundaryGap: false,
                 data: []
             },
@@ -97,21 +96,19 @@
             type:'post',
             data:{'_token':'{{ csrf_token() }}'},
             success:function(data){
-                console.log(1);
+                var at = [];
+                for (var i=0;i<data.data.length;i++){
+                    at[i] = [data.data[i].last_time,1];
+                }
+                console.log(data,at);
                 myChart.setOption({
-                    xAxis: {
-                        data:['02-11','02-12','02-13','02-14','02-15','02-16','02-17'].map(function (str) {
-                            return str.replace(' ', '\n')
-                        })
+                    xAxis:  {
+                        data:['2017-02-13 00:00:00','2017-02-13 01:00:00','2017-02-13 02:00:00','2017-02-13 03:00:00','2017-02-13 04:00:00','2017-02-13 05:00:00','2017-02-13 06:00:00','2017-02-13 07:00:00','2017-02-13 08:00:00','2017-02-13 09:00:00','2017-02-13 10:00:00','2017-02-13 11:00:00','2017-02-13 12:00:00']
                     },
                     series: [
                         {
                             name: '订单数',
-                            data: [2, 3, 4, 5, 6, 7, 8]
-                        },
-                        {
-                            name: '签收数',
-                            data: [1, 2, 3, 4, 5, 6, 7]
+                            data: at
                         }
                     ]
                 });

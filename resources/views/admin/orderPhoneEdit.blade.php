@@ -77,12 +77,12 @@
         $("#from_btn").click(function () {
             $.ajax({
                 type:'post',
-                url:'{{url('order/edit')}}?id={{$data->id}}&sorting_field={{request()->get('sorting_field')}}',
+                url:'{{url('order/phone-edit')}}?id={{$data->id}}&sorting_field={{request()->get('sorting_field')}}',
                 data:$(".order_form").serialize(),
                 success:function(data){
                     if(data.msg_type==200){
                         swal({text:'提交成功',type:'success',timer:2000,showConfirmButton:false}).then(function () {
-                            window.location.href="{{url('order/index')}}?state="+data.data+"";
+                            window.location.href="{{url('order/phone-index')}}?state="+data.data+"";
                         });
                     }
                 }

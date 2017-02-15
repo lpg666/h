@@ -12,6 +12,7 @@ class OrderController extends AdminController
             $data = $request->except(['_token']);
             $data['ip'] = $request->getClientIp();
             $data['agent'] = $request->header('User-Agent');
+            $data['last_time'] = time();
             if(false !== PhoneOrder::create($data)){
                 return success();
             }else{
@@ -61,7 +62,8 @@ class OrderController extends AdminController
         if($request->isMethod('post')){
             $sorting_field = $request->input('sorting_field');
             $state = $request->input('state');
-            if(false !== PhoneOrder::find($id)->update(['state'=>$state])){
+            $update_time = time();
+            if(false !== PhoneOrder::find($id)->update(['state'=>$state,'update_time'=>$update_time])){
                 return success($sorting_field);
             }else{
                 return error();
