@@ -11,6 +11,7 @@
 |
 */
 Route::group(['namespace' => 'Admin', 'domain' => envDomain('gm'), 'as' => 'admin.'], function () {
+    Route::controller('phone', 'PhoneController');
     Route::controller('auth', 'AuthController');
     Route::group(['middleware' => 'admin.auth'], function() {
         Route::get('/',function(){ return redirect('index');});
