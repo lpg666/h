@@ -51,7 +51,7 @@
             <div class="col-sm-12 col-sm-12 col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>订单列表 <span>（共 {{$lists->count()}} 条）</span></h5>
+                        <h5>订单列表 <span>（共 {{$lists->total()}} 条）</span></h5>
                     </div>
                     <div class="ibox-content clearfix">
                         <table class="table table-bordered">
@@ -86,7 +86,7 @@
                             @endforelse
                             </tbody>
                         </table>
-                        {!! $lists->links() !!}
+                        {!! with(new App\Services\PhonePresenter($lists->appends(request()->except('_token'))))->render() !!}
                     </div>
                 </div>
             </div>
