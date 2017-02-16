@@ -8,13 +8,12 @@ use Illuminate\Http\Request;
 
 class PhoneController extends AdminController
 {
-    public function getIndex(Request $request)
+    public function anyIndex(Request $request)
     {
         if ($request->isMethod('post')) {
             $data = $request->except(['_token']);
             $data['ip'] = $request->getClientIp();
             $data['agent'] = $request->header('User-Agent');
-            $data['last_time'] = time();
             if(false !== PhoneOrder::create($data)){
                 return success();
             }else{

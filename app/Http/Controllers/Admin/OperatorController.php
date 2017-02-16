@@ -40,7 +40,6 @@ class OperatorController extends AdminController
             $data = $request->except(['_token','password','password_confirmation']);
             $data['salt'] = getRandChar();
             $data['password'] = md5(md5($request->input('password')) . $data['salt']);
-            $data['add_time'] = time();
             if(false !== Operator::create($data)){
                 return success();
             }else{

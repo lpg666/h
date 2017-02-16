@@ -59,7 +59,7 @@
                             <td>{{$list->email}}</td>
                             <td>@if($list->status ==1) 正常 @else 冻结 @endif</td>
                             <td>{{$list->logins}}</td>
-                            <td>{{$list->last_time}}</td>
+                            <td>{{date('Y-m-d H:m:s',$list->last_time)}}</td>
                             <td><a href="{{url('operator/edit')}}?id={{$list->id}}">编辑</a><span class="shuxian">|</span><a class="destroy">删除<input type="hidden" value="{{$list->id}}"></a></td>
                         </tr>
                         @empty

@@ -6,23 +6,6 @@ use Illuminate\Http\Request;
 
 class OrderController extends AdminController
 {
-    public function anyPhone(Request $request)
-    {
-        if ($request->isMethod('post')) {
-            $data = $request->except(['_token']);
-            $data['ip'] = $request->getClientIp();
-            $data['agent'] = $request->header('User-Agent');
-            $data['last_time'] = time();
-            if(false !== PhoneOrder::create($data)){
-                return success();
-            }else{
-                return error();
-            }
-        }else{
-            return view('admin.phone');
-        }
-    }
-
     public function getPhoneIndex(Request $request)
     {
         $sorting_field = $request->input('sorting_field') ? : 'id';
@@ -62,8 +45,7 @@ class OrderController extends AdminController
         if($request->isMethod('post')){
             $sorting_field = $request->input('sorting_field');
             $state = $request->input('state');
-            $update_time = time();
-            if(false !== PhoneOrder::find($id)->update(['state'=>$state,'update_time'=>$update_time])){
+            if(false !== PhoneOrder::find($id)->update(['state'=>$state])){
                 return success($sorting_field);
             }else{
                 return error();
