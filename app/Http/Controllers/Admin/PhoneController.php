@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 use App\Model\PhoneHits;
 use App\Model\PhoneOrder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PhoneController extends AdminController
 {

@@ -41,10 +41,16 @@
                     saveAsImage: {}
                 }
             },
-            xAxis:  {
-                type: 'time',
-                boundaryGap: false,
-                data: []
+            xAxis: {
+                type: 'category',
+                boundaryGap: true,
+                data: [],
+                axisTick:{
+                    alignWithLabel:false
+                },
+                axisLabel: {
+                    formatter: '{value}'
+                }
             },
             yAxis: {
                 name: '条',
@@ -69,22 +75,6 @@
                             {type: 'average', name: '平均值'}
                         ]
                     }
-                },
-                {
-                    name:'签收数',
-                    type:'line',
-                    data:[],
-                    markPoint: {
-                        data: [
-                            {type: 'max', name: '最大值'},
-                            {type: 'min', name: '最小值'}
-                        ]
-                    },
-                    markLine: {
-                        data: [
-                            {type: 'average', name: '平均值'}
-                        ]
-                    }
                 }
             ]
         });
@@ -96,19 +86,15 @@
             type:'post',
             data:{'_token':'{{ csrf_token() }}'},
             success:function(data){
-                var at = [];
-                for (var i=0;i<data.data.length;i++){
-                    at[i] = [data.data[i].last_time,1];
-                }
-                console.log(data,at);
+                console.log(data.data.day);
                 myChart.setOption({
                     xAxis:  {
-                        data:['2017-02-13 00:00:00','2017-02-13 01:00:00','2017-02-13 02:00:00','2017-02-13 03:00:00','2017-02-13 04:00:00','2017-02-13 05:00:00','2017-02-13 06:00:00','2017-02-13 07:00:00','2017-02-13 08:00:00','2017-02-13 09:00:00','2017-02-13 10:00:00','2017-02-13 11:00:00','2017-02-13 12:00:00']
+                        data:['01:00','02:00','03:00','04:00','05:00','06:00','07:00','08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00','21:00','22:00','23:00','24:00']
                     },
                     series: [
                         {
                             name: '订单数',
-                            data: at
+                            data: data.data.ms
                         }
                     ]
                 });
