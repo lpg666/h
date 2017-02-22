@@ -180,7 +180,7 @@ html{height:100%}body.signin{height:auto;background:url(../img/login-background.
 /**/
 .order .form{ margin-top: 30px; margin-bottom: 30px; padding-left: 15px; float: left;}
 .order .form .form_input{ width: 150px; float: left;}
-.order .form .search{margin-left: 55px;}
+.order .form .search{margin-left: 80px;}
 .order .form .form-control{ height: 34px; width: 150px;}
 .order .add_role{ display: block; width: 100px; float: right;}
 .order .add_user{display: block; width: 100px; float: right; margin-right: 15px;}

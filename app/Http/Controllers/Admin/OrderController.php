@@ -9,7 +9,7 @@ class OrderController extends AdminController
     public function getPhoneIndex(Request $request)
     {
         $sorting_field = $request->input('sorting_field') ? : 'id';
-        $sorting_method = $request->input('sorting_method') ? : 'asc';
+        $sorting_method = $request->input('sorting_method') ? : 'desc';
         $data = PhoneOrder::with('models')->with('colors')->with('capacitys')->with('states')->orderBy($sorting_field,$sorting_method);
         $model = $request->input('model');
         $state = $request->input('state');
