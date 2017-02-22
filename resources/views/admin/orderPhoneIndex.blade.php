@@ -53,18 +53,18 @@
                         <div class="form_input">
                             <select class="form-control" name="model">
                                 <option value="">请选择</option>
-                                @foreach(\App\Model\PhoneModel::all() as $phoneModel)
+                                {{--@foreach(\App\Model\PhoneModel::all() as $phoneModel)
                                     <option value="{{$phoneModel->id}}" @if(request()->get('model') == $phoneModel->id) selected="selected" @endif>{{ $phoneModel->name }}</option>
-                                @endforeach
+                                @endforeach--}}
                             </select>
                         </div>
                         <span class="label-h control-label pull-left">发货方式：</span>
                         <div class="form_input">
                             <select class="form-control" name="model">
                                 <option value="">请选择</option>
-                                @foreach(\App\Model\PhoneModel::all() as $phoneModel)
+                                {{--@foreach(\App\Model\PhoneModel::all() as $phoneModel)
                                     <option value="{{$phoneModel->id}}" @if(request()->get('model') == $phoneModel->id) selected="selected" @endif>{{ $phoneModel->name }}</option>
-                                @endforeach
+                                @endforeach--}}
                             </select>
                         </div>
                         <span class="label-h control-label pull-left">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</span>
@@ -137,7 +137,7 @@
                                     <td><a href="{{url('order/phone-edit')}}?id={{$list->id}}&sorting_field={{request()->get('state')}}">编辑</a></td>
                                 </tr>
                             @empty
-                                <td colspan="12" align="center">暂无记录</td>
+                                <td colspan="14" align="center">暂无记录</td>
                             @endforelse
                             </tbody>
                         </table>
