@@ -7,7 +7,7 @@
 .no_margin{margin: 0;}
 /*覆盖修改*/
 .breadcrumb{padding-left: 20px;}
-
+.m-b{margin-bottom: 10px;}
 /*商品管理*/
 
 .shuxian{ margin: 0 10px;}
@@ -89,7 +89,7 @@
 .roleCreate_form .radio_box span{ height: 33px; line-height: 33px; margin-right: 10px; display: inline-block; float: left;}
 
 /**/
-.order .form{ margin-top: 30px; margin-bottom: 30px; padding-left: 15px; float: left;}
+.order .form{ margin-top: 20px; margin-bottom: 20px; padding-left: 15px; float: left;}
 .order .form .form_input{ width: 150px; float: left;}
 .order .form .search{margin-left: 80px;}
 .order .form .form-control{ height: 34px; width: 150px;}

@@ -6,10 +6,34 @@
 @endsection
 
 @section('content')
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <p class="modal-title">订单信息</p>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-3">.col-md-4</div>
+                        <div class="col-md-3">.col-md-4</div>
+                        <div class="col-md-3">.col-md-4</div>
+                        <div class="col-md-3">.col-md-4</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">.col-md-4</div>
+                        <div class="col-md-4">.col-md-4</div>
+                        <div class="col-md-4">.col-md-4</div>
+                        <div class="col-md-4">.col-md-4</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="order">
         <div class="row">
             <form class="col-sm-12 form" action="" method="get">
-                <div class="col-sm-12 no-padding m-b">
+                <div class="col-sm-12 no-padding">
                     <div class="col-sm-7 no-padding m-b">
                         <span class="label-h control-label pull-left">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
                         <div class="form_input"><input class="form-control" type="text" name="name" value="{{ request()->get('name') }}"></div>
@@ -23,10 +47,10 @@
                     <div class="col-sm-5 no-padding m-b">
                         <span class="label-h control-label pull-left">发货时间：</span>
                         <div class="form_input">
-                            <div class="input-daterange input-group" id="datepicker">
-                                <input type="text" class="input-sm form-control" name="start" value="{{request()->get('start')}}" />
+                            <div class="input-daterange input-group" id="datepicker1">
+                                <input type="text" class="input-sm form-control" name="sendStart" value="{{request()->get('sendStart')}}" />
                                 <span class="input-group-addon">到</span>
-                                <input type="text" class="input-sm form-control" name="end" value="{{request()->get('end')}}" />
+                                <input type="text" class="input-sm form-control" name="sendEnd" value="{{request()->get('sendEnd')}}" />
                             </div>
                         </div>
                     </div>
@@ -51,20 +75,20 @@
                     <div class="col-sm-7 no-padding m-b">
                         <span class="label-h control-label pull-left">发货仓库：</span>
                         <div class="form_input">
-                            <select class="form-control" name="model">
+                            <select class="form-control" name="depot_id">
                                 <option value="">请选择</option>
-                                {{--@foreach(\App\Model\PhoneModel::all() as $phoneModel)
-                                    <option value="{{$phoneModel->id}}" @if(request()->get('model') == $phoneModel->id) selected="selected" @endif>{{ $phoneModel->name }}</option>
-                                @endforeach--}}
+                                @foreach(\App\Model\PhoneDepot::all() as $phoneDepot)
+                                    <option value="{{$phoneDepot->id}}" @if(request()->get('depot_id') == $phoneDepot->id) selected="selected" @endif>{{ $phoneDepot->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <span class="label-h control-label pull-left">发货方式：</span>
                         <div class="form_input">
-                            <select class="form-control" name="model">
+                            <select class="form-control" name="express_mode_id">
                                 <option value="">请选择</option>
-                                {{--@foreach(\App\Model\PhoneModel::all() as $phoneModel)
-                                    <option value="{{$phoneModel->id}}" @if(request()->get('model') == $phoneModel->id) selected="selected" @endif>{{ $phoneModel->name }}</option>
-                                @endforeach--}}
+                                @foreach(\App\Model\ExpressMode::all() as $expressMode)
+                                    <option value="{{$expressMode->id}}" @if(request()->get('express_mode_id') == $expressMode->id) selected="selected" @endif>{{ $expressMode->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <span class="label-h control-label pull-left">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：</span>
@@ -80,10 +104,10 @@
                     <div class="col-sm-5 no-padding m-b">
                         <span class="label-h control-label pull-left">签收时间：</span>
                         <div class="form_input">
-                            <div class="input-daterange input-group" id="datepicker">
-                                <input type="text" class="input-sm form-control" name="start" value="{{request()->get('start')}}" />
+                            <div class="input-daterange input-group" id="datepicker2">
+                                <input type="text" class="input-sm form-control" name="signStart" value="{{request()->get('signStart')}}" />
                                 <span class="input-group-addon">到</span>
-                                <input type="text" class="input-sm form-control" name="end" value="{{request()->get('end')}}" />
+                                <input type="text" class="input-sm form-control" name="signEnd" value="{{request()->get('signEnd')}}" />
                             </div>
                         </div>
                     </div>
@@ -134,7 +158,7 @@
                                     <td>{{$list->user_id}}</td>
                                     <td>{{$list->express_number}}</td>
                                     <td>{{$list->ad_id}}</td>
-                                    <td><a href="{{url('order/phone-edit')}}?id={{$list->id}}&sorting_field={{request()->get('state')}}">编辑</a></td>
+                                    <td><div class="btn_modal">编辑</div></td>
                                 </tr>
                             @empty
                                 <td colspan="14" align="center">暂无记录</td>
@@ -151,7 +175,10 @@
 
 @section('footer_assets')
     <script>
-        $("#datepicker").datepicker({
+        $(".btn_modal").click(function () {
+            $('#myModal').modal('toggle');
+        });
+        $("#datepicker,#datepicker1,#datepicker2").datepicker({
             keyboardNavigation: !1,
             forceParse: !1,
             autoclose: !0

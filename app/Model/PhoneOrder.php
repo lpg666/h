@@ -23,4 +23,8 @@ class PhoneOrder extends Model
     public function states() {
         return $this->belongsTo('App\Model\PhoneOrderState', 'state', 'id');
     }
+
+    public function depot(){
+        return $this->belongsTo('App\Model\PhoneDepot', 'depot_id', 'id');
+    }
 }
