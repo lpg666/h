@@ -15,7 +15,9 @@ class PhoneController extends AdminController
         if ($request->isMethod('post')) {
             $data = $request->except(['_token']);
             $data['ip'] = $request->getClientIp();
-            $data['agent'] = $request->header('User-Agent');
+            if (preg_match('/(?:\()(.*)(?:\;)/i',$request->header('User-Agent'),$match)){
+                $data['agent'] = $match[1];
+            }
             $ip = PhoneHits::where('ip',$data['ip'])->orderBy('created_at')->get();
 
             if($ip->count() <= 0){

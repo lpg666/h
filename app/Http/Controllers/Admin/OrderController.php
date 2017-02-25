@@ -81,18 +81,12 @@ class OrderController extends AdminController
 
     public function anyPhoneEdit(Request $request)
     {
-        $id = $request->input('id');
         if($request->isMethod('post')){
-            $sorting_field = $request->input('sorting_field');
-            $state = $request->input('state');
-            if(false !== PhoneOrder::find($id)->update(['state'=>$state])){
-                return success($sorting_field);
-            }else{
-                return error();
-            }
-        }else{
+            $id = $request->input('id');
             $data = PhoneOrder::find($id);
-            return view('admin.orderPhoneEdit',['data'=>$data]);
+            return view('admin.orderPhoneModal',['data'=>$data]);
+        }else{
+
         }
     }
 }

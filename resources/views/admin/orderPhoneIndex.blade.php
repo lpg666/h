@@ -7,25 +7,75 @@
 
 @section('content')
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog modal-lgs" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <p class="modal-title">订单信息</p>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-3">.col-md-4</div>
-                        <div class="col-md-3">.col-md-4</div>
-                        <div class="col-md-3">.col-md-4</div>
-                        <div class="col-md-3">.col-md-4</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">.col-md-4</div>
-                        <div class="col-md-4">.col-md-4</div>
-                        <div class="col-md-4">.col-md-4</div>
-                        <div class="col-md-4">.col-md-4</div>
-                    </div>
+                    <form id="orderPE" method="" action="">
+                        {{--<table border="1">
+                            <tr>
+                                <td colspan="3">订单号：<input type="text" name="" id=""></td>
+                                <td colspan="3">下定日期：<input type="text" name="" id=""></td>
+                                <td colspan="3">发货日期：<input type="text" name="" id=""></td>
+                                <td colspan="3">签收日期：<input type="text" name="" id=""></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <span class="red_color">*订单状态</span>
+                                    <select>
+                                        <option>1</option>
+                                        <option>1</option>
+                                        <option>1</option>
+                                        <option>1</option>
+                                    </select>
+                                </td>
+                                <td colspan="3">购买数量：<input type="text" name="" id=""></td>
+                                <td colspan="3">总价格：1000元</td>
+                                <td colspan="3"><span class="red_color">应付金额：<input type="text" name="" id="">元</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="title">客户信息</td>
+                                <td colspan="3">客户端：<span class="red_color">ios</span></td>
+                                <td colspan="6">赠品：<input type="text" name="" id=""></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">姓名：<input type="text" name="" id=""></td>
+                                <td colspan="3">电话：<input type="text" name="" id=""></td>
+                                <td colspan="3">来源：1000元</td>
+                                <td colspan="3">广告ID：1000元</td>
+                            </tr>
+                            <tr><td colspan="12" class="title">客服跟单信息</td></tr>
+                            <tr>
+                                <td colspan="3">发货方式：<select><option>1</option></select></td>
+                                <td colspan="3">快递单号：<input type="text" name="" id=""></td>
+                                <td colspan="3">发货仓库：<select><option>1</option></select></td>
+                                <td colspan="3"><a class="txls" href="javascript:void(0);">导出快递单</a> 导出发票联</td>
+                            </tr>
+                            <tr>
+                                <td colspan="12">发货地址：<input type="text" name="" id=""></td>
+                            </tr>
+                            <tr>
+                                <td colspan="12">下单说明：<input type="text" name="" id=""></td>
+                            </tr>
+                            <tr>
+                                <td colspan="12">跟单说明：<input type="text" name="" id=""></td>
+                            </tr>
+                            <tr>
+                                <td colspan="12" class="title">产品信息</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">型号：<select style="width: 300px;"><option>1</option></select></td>
+                                <td colspan="7">短信：<select><option>1</option></select><input style="width: 400px;" type="text" name="" id=""></td>
+                            </tr>
+                        </table>--}}
+                        <div class="text-center btn_box">
+                            <button type="submit" class="btn btn-primary sub">确认提交</button>
+                            <button type="button" class="btn btn-default res">重置</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -145,7 +195,7 @@
                             <tbody>
                             @forelse($lists as $list)
                                 <tr>
-                                    <td>{{$list->id}}</td>
+                                    <td class="ajax_id">{{$list->id}}</td>
                                     <td>{{$list->created_at}}</td>
                                     <td>{{$list->send}}</td>
                                     <td>{{$list->sign}}</td>
@@ -158,7 +208,7 @@
                                     <td>{{$list->user_id}}</td>
                                     <td>{{$list->express_number}}</td>
                                     <td>{{$list->ad_id}}</td>
-                                    <td><div class="btn_modal">编辑</div></td>
+                                    <td><a href="javascript:void(0)" class="btn_modal">编辑</a></td>
                                 </tr>
                             @empty
                                 <td colspan="14" align="center">暂无记录</td>
@@ -176,7 +226,27 @@
 @section('footer_assets')
     <script>
         $(".btn_modal").click(function () {
-            $('#myModal').modal('toggle');
+            var ajax_id = $(this).parent().prevAll('.ajax_id').text();
+            $.ajax({
+                url:'{{url('order/phone-edit')}}',
+                type:'post',
+                dataType:'html',
+                data:{'id':ajax_id,'_token':'{{csrf_token()}}'},
+                success:function(html){
+                    $("#orderPE").prepend(html);
+                    $('#myModal').modal('toggle');
+                }
+
+            });
+        });
+        $('#myModal').on('hidden.bs.modal', function () {
+            $("#orderPE").find('table').remove();
+        });
+        $(".txls").click(function () {
+            $('#orderPE table').tableExport({
+                filename: 'table',
+                format: 'xls'
+            });
         });
         $("#datepicker,#datepicker1,#datepicker2").datepicker({
             keyboardNavigation: !1,
