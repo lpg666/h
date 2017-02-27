@@ -82,11 +82,30 @@ class OrderController extends AdminController
     public function anyPhoneEdit(Request $request)
     {
         if($request->isMethod('post')){
+            $data = $request->all();
+            if(false !== PhoneOrder::find($data['id'])->update($data)){
+                return success();
+            }else{
+                return error();
+            }
+        }else{
             $id = $request->input('id');
             $data = PhoneOrder::find($id);
             return view('admin.orderPhoneModal',['data'=>$data]);
-        }else{
+        }
+    }
 
+    public function postLocked(Request $request)
+    {
+        $oid = $request->input('id');
+        $uid = PhoneOrder::sharedLock()->find($oid);
+        $data = $request -> input('uid');
+        if(empty($uid->user_id)){
+            if(false !== $uid->update(['user_id'=>$data])){
+                return success();
+            }
+        }else{
+            return error();
         }
     }
 }

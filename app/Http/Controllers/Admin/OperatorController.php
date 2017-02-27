@@ -146,6 +146,10 @@ class OperatorController extends AdminController
     public function getRoleDestroy(Request $request)
     {
         $id = $request->get('id');
+        $status = OperatorRole::find($id);
+        if($status->status == 1){
+            return error('该角色无法被删除');
+        }
         if(false !== OperatorRole::destroy($id)){
             return success();
         }else{

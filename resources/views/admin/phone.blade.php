@@ -21,15 +21,15 @@
         </div>
         <div>
             外观：
-            <label>银色：<input type="radio" name="color" value="1"></label>
-            <label>金色：<input type="radio" name="color" value="2"></label>
-            <label>深空灰色：<input type="radio" name="color" value="3"></label>
-            <label>玫瑰金色：<input type="radio" name="color" value="4"></label>
+            <label>银色：<input type="radio" name="" value="1"></label>
+            <label>金色：<input type="radio" name="" value="2"></label>
+            <label>深空灰色：<input type="radio" name="" value="3"></label>
+            <label>玫瑰金色：<input type="radio" name="" value="4"></label>
         </div>
         <div>
             容量：
-            <label>32G<input type="radio" name="capacity" value="1"></label>
-            <label>128G<input type="radio" name="capacity" value="2"></label>
+            <label>32G<input type="radio" name="" value="1"></label>
+            <label>128G<input type="radio" name="" value="2"></label>
         </div>
 
         <input type="text" name="phone" value="15519881999">
