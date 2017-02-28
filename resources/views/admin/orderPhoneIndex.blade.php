@@ -179,12 +179,18 @@
         $(".user_locked").change(function () {
             var ajax_id = $(this).parent().prevAll('.ajax_id').text();
             var uid = $(this).val();
+            var _this = $(this);
             $.ajax({
                 url:'{{url('order/locked')}}',
                 type:'post',
                 data:{'id':ajax_id,'uid':uid,'_token':'{{ csrf_token() }}'},
                 success:function (data) {
-                    console.log(data);
+                    if(data.msg_type==-1){
+                        swal({text: '已被锁定', type: "error", timer: 2000, showConfirmButton: false});
+                        _this.val(data.msg.user_id);
+                    }else{
+                        swal({text: "锁定成功", type: "success", timer: 2000, showConfirmButton: false});
+                    }
                 }
             });
         });

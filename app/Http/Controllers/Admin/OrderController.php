@@ -105,7 +105,7 @@ class OrderController extends AdminController
                 return success();
             }
         }else{
-            return error();
+            return error($uid);
         }
     }
 }
