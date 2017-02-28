@@ -44,7 +44,15 @@
     </form>
 <script src="{{ elixir('admin/js/app.js') }}"></script>
 <script>
-
+    $.ajax({
+        url:'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=117.136.39.210',
+        type:'get',
+        dataType:'json',
+        data:{},
+        success:function(data){
+            console.log(data);
+        }
+    });
 </script>
 </body>
 </html>

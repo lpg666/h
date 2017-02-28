@@ -26,7 +26,7 @@
     <tr>
         <td colspan="3">姓名：<input type="text" name="name" id="" value="{{$data->name}}"></td>
         <td colspan="3">电话：<input type="text" name="phone" id="" value="{{$data->phone}}"></td>
-        <td colspan="3">来源：{{$data->ip}}</td>
+        <td colspan="3">来源：{{$data->ip}}{{$data->ip_address}}</td>
         <td colspan="3">广告ID：{{$data->ad_id}}</td>
     </tr>
     <tr><td colspan="12" class="title">客服跟单信息</td></tr>
