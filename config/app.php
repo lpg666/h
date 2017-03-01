@@ -155,7 +155,12 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Stevenyangecho\UEditor\UEditorServiceProvider::class
+        Stevenyangecho\UEditor\UEditorServiceProvider::class,
+
+        /*
+         *
+         */
+        F2m2\Apidocs\ApidocsServiceProvider::class
 
     ],
 
