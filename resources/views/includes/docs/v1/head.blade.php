@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="/assets/docs/v1/css/prettify.css">
 <link rel="stylesheet" href="/assets/docs/v1/css/f2m2-grid.css">
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-<script src="//code.jquery.com/ui/1.10.2/jquery-ui.min.js"></script>
+<script src="/assets/docs/v1/js/modernizr.js"></script>
+<script src="/assets/docs/v1/js/jquery.js"></script>
+<script src="/assets/docs/v1/js/jquery-ui.min.js"></script>
 <script src="/assets/docs/v1/js/prettify.js"></script>
 <script src="/assets/docs/v1/js/waypoints.min.js"></script>
 <script src="/assets/docs/v1/js/highlight.js"></script>
