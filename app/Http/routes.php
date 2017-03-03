@@ -37,4 +37,5 @@ Route::group(['namespace' => 'Admin', 'domain' => envDomain('gm'), 'as' => 'admi
 Route::group(['namespace' => 'Mobile', 'domain' => envDomain('m'), 'as' => 'mobile.'], function () {
     //Wechat
     Route::any('wechatService/serve', 'WechatServiceController@serve');
+    Route::any('wechatService/menu', 'WechatServiceController@menu');
 });

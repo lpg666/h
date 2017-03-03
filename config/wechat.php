@@ -35,6 +35,24 @@ return [
                 'token'   => env('WECHAT_TOKEN', 'your-token'),                     // Token
                 'aes_key' => env('WECHAT_AES_KEY', ''),                             // EncodingAESKey
             ],
+            'menus' => [
+                [
+                    'type' => 'view',
+                    'name' => '管理后台',
+                    'url' => 'http://119.23.127.227'
+                ],
+                [
+                    'type' => 'click',
+                    'name' => '点我试试',
+                    'key' => 'service_knowus'
+                ],
+
+            ],
+            [
+                'event_keys' => [
+                    'service_knowus' => '你这只肥猪！'
+                ]
+            ]
         ],
 
     ],
