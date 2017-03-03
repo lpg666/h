@@ -8,6 +8,7 @@
 
 namespace App\Services;
 
+use App\Model\WechatMenu;
 use EasyWeChat\Foundation\Application as Wechat;
 
 class WechatCustom
