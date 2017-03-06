@@ -71,7 +71,26 @@ class WechatCustom
      * 自定义事件消息
      */
     public static function _eventMsgHandler($message){
-        dd($message);
+        switch ($message->Event){
+            case 'subscribe':
+                return '您好！欢迎关注，点击"点我试试"有惊喜哦~';
+                break;
+            case 'unsubscribe':
+                break;
+            case 'SCAN':
+
+                break;
+            case 'CLICK':
+                $event_key = $message->EventKey;
+                $reply = WechatMenu::where('key',$event_key)->pluck('reply');
+                if (!empty($reply)) return $reply;
+                break;
+            case 'VIEW':
+                break;
+            default:
+                return '';
+
+        }
     }
 
     /**
