@@ -66,6 +66,8 @@ class WechatCustom
                     break;
             }
         });
+        $response = $wechatServer->serve();
+        return $response;
     }
 
     /**
