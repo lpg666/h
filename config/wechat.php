@@ -8,7 +8,7 @@ return [
              *
              * 当值为 false 时，所有的日志都不会记录
              */
-            'debug'  => env('WECHAT_DEBUG', true),
+            'debug'  => env('WECHAT_DEBUG', false),
 
             /**
              * 使用 Laravel 的缓存系统
@@ -34,6 +34,13 @@ return [
                 'secret'  => env('WECHAT_SUBSCRIBE_SECRET', 'your-app-secret'),     // AppSecret
                 'token'   => env('WECHAT_TOKEN', 'your-token'),                     // Token
                 'aes_key' => env('WECHAT_AES_KEY', ''),                             // EncodingAESKey
+            ],
+            //服务号
+            'service' => [
+                'app_id'  => env('WECHAT_SERVICE_APPID', 'your-app-id'),         // AppID
+                'secret'  => env('WECHAT_SERVICE_SECRET', 'your-app-secret'),     // AppSecret
+                'token'   => env('WECHAT_TOKEN', 'your-token'),          // Token
+                'aes_key' => env('WECHAT_AES_KEY', ''),                    // EncodingAESKey
             ],
             'menus' => [
                 [

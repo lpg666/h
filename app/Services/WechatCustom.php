@@ -15,10 +15,10 @@ class WechatCustom
 {
     public static $Instances = [];
     public static $wechatInstance = null;
-    public static $type = 'subscribe';
+    public static $type = 'service';
     public static $auth = 'oauth';
 
-    public static function setWechatInstances($type='subscribe',$auth='oauth')
+    public static function setWechatInstances($type='service',$auth='oauth')
     {
         self::$type = $type;
         self::$auth = $auth;
@@ -39,7 +39,8 @@ class WechatCustom
         $wechatServer->setMessageHandler(function ($message){
             switch ($message->MsgType) {
                 case 'event':
-                    return self::_eventMsgHandler($message);
+                    /*return self::_eventMsgHandler($message);*/
+                    return '收到事件消息';
                     break;
                 case 'text':
                     return '收到文字消息';

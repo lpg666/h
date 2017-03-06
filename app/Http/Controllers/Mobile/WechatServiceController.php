@@ -14,7 +14,7 @@ class WechatServiceController extends WechatController
     public function __construct()
     {
         parent::__construct();
-        WechatCustom::setWechatInstances('subscribe');
+        WechatCustom::setWechatInstances('service');
     }
 
 }
