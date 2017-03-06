@@ -32,6 +32,49 @@ class WechatCustom
     }
 
     /**
+     * 信息服务
+     */
+    public static function serve(){
+        $wechatServer = self::$wechatInstance->server;
+        $wechatServer->setMessageHandler(function ($message){
+            switch ($message->MsgType) {
+                case 'event':
+                    return self::_eventMsgHandler($message);
+                    break;
+                case 'text':
+                    return '收到文字消息';
+                    break;
+                case 'image':
+                    return '收到图片消息';
+                    break;
+                case 'voice':
+                    return '收到语音消息';
+                    break;
+                case 'video':
+                    return '收到视频消息';
+                    break;
+                case 'location':
+                    return '收到坐标消息';
+                    break;
+                case 'link':
+                    return '收到链接消息';
+                    break;
+                // ... 其它消息
+                default:
+                    return '收到其它消息';
+                    break;
+            }
+        });
+    }
+
+    /**
+     * 自定义事件消息
+     */
+    public static function _eventMsgHandler($message){
+        dd($message);
+    }
+
+    /**
      * 开发url验证
      * @param $request
      * @return string
