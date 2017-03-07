@@ -20,7 +20,6 @@ class YourWechatController extends Controller
 
         }else{
             if($redirect = $this->_loginSession($request)) return $redirect;
-            dd($redirect);
             return view('mobile.yourWechatData');
         }
     }
