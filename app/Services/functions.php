@@ -11,8 +11,16 @@ function envDomain($v='') {
 
 //loginSession
 function loginSession($member='') {
-    if (empty($member)) return session('member');
-    else session(['member'=>$member]);
+    if (empty($member)){
+        $sign = request()->input('sign');
+        if (empty($sign)){
+            return session('member');
+        }else{
+            return 'sign';
+        }
+    }else{
+        session(['member'=>$member]);
+    }
 }
 
 //trigger error, exit

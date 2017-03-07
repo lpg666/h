@@ -27,6 +27,23 @@ return [
                 'file'  => env('WECHAT_LOG_FILE', storage_path('logs\wechat.log')),
             ],
         ],
+        /**
+         * OAuth 配置
+         */
+        'oauth' => [ //scopes为snsapi_userinfo
+            'oauth' => [
+                'scopes' => array_map('trim', explode(',',env('WECHAT_OAUTH_SCOPES', 'snsapi_userinfo'))),
+                'callback' => env('WECHAT_OAUTH_CALLBACK', '/wechatService/oauth'),
+            ]
+        ],
+        'oauth_base' => [//scopes为snsapi_base
+            'oauth' => [
+                'scopes'   => array_map('trim', explode(',', env('WECHAT_OAUTH_SCOPES', 'snsapi_base'))),
+                'callback' => env('WECHAT_OAUTH_BASE_CALLBACK', '/wechatService/oauth-base'),
+            ]
+        ],
+
+
         'account' => [
             //订阅号
             'subscribe' => [

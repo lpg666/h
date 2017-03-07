@@ -17,4 +17,15 @@ class WechatServiceController extends WechatController
         WechatCustom::setWechatInstance('service');
     }
 
+    public function oauth()
+    {
+        return WechatCustom::oauthCallback();
+    }
+
+    public function oauthBase()
+    {
+        WechatCustom::setWechatInstance('service','oauth_base');
+        return WechatCustom::oauthCallback();
+    }
+
 }

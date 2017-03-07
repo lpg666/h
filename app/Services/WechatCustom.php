@@ -25,7 +25,7 @@ class WechatCustom
         $key = "{$type}_{$auth}";
         if (empty(self::$Instances[$key]))
         {
-            $options = config('wechat.config.base') + config("wechat.config.account.{$type}")/* + config("wechat.config.{$auth}")*/;
+            $options = config('wechat.config.base') + config("wechat.config.account.{$type}") + config("wechat.config.{$auth}");
             self::$Instances[$key] = new Wechat($options);
         }
         self::$wechatInstance = self::$Instances[$key];
@@ -96,9 +96,50 @@ class WechatCustom
     }
 
     /**
+     * 授权获取用户信息
+     */
+    public static function oauthUser($target_url=''){
+        $member = loginSession();
+        $wechat_user = session('wechat_user');
+        if(!empty($member)) return $member;
+        $wechat_oauth_target_url = $target_url ? $target_url : request()->fullUrl();
+        if(empty($wechat_user)){
+            $wechatOauth = self::$wechatInstance->oauth;
+            session(['wechat_oauth_target_url' => $wechat_oauth_target_url]);
+            return $wechatOauth->redirect();
+        }
+        return $member;
+    }
+
+    /**
+     * oauth授权登陆回调
+     */
+    public static function oauthCallback(){
+        $wechatOauth = self::$wechatInstance->oauth;
+        $wechatUser = $wechatOauth->User();
+        $target_url = session('wechat_oauth_target_url') ? : '/';
+        $subscribe = 1;
+        if(self::$auth == 'oauth'){
+            $wechat_user_origin_data = $wechatUser->getOriginal();
+        }elseif(self::$auth == 'oauth_base'){
+            $openid = $wechatUser->getId();
+            $wechat_user_origin_data = self::getWechatUserInfo($openid);
+            $subscribe = $wechat_user_origin_data['subscribe'];
+        }
+    }
+
+    /**
+     * 通过openid获取用户信息
+     */
+    public static function getWechatUserInfo($openid)
+    {
+        if (empty($openid)) return false;
+        $wechatUser = self::$wechatInstance->user;
+        return $wechatUser->get($openid);
+    }
+
+    /**
      * 开发url验证
-     * @param $request
-     * @return string
      */
     public static function checkSignature($request) {
         $signature = $request->get('signature');
