@@ -84,7 +84,7 @@ class WechatCustom
                 break;
             case 'CLICK':
                 $event_key = $message->EventKey;
-                $reply = WechatMenu::where('key',$event_key)->pluck('reply');
+                $reply = WechatMenu::where('key',$event_key)->first()->reply;
                 if (!empty($reply)) return $reply;
                 break;
             case 'VIEW':
