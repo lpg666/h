@@ -116,7 +116,7 @@ class WechatCustom
      */
     public static function oauthCallback(){
         $wechatOauth = self::$wechatInstance->oauth;
-        $wechatUser = $wechatOauth->User();
+        $wechatUser = $wechatOauth->user();
         $target_url = session('wechat_oauth_target_url') ? : '/';
         $subscribe = 1;
         if(self::$auth == 'oauth'){
