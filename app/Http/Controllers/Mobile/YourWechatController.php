@@ -23,7 +23,8 @@ class YourWechatController extends Controller
 
             $member = loginSession();
 
-            return view('mobile.yourWechatData',['member'=>$member]);
+            dump($member);
+            return view('mobile.yourWechatData');
         }
     }
 
