@@ -102,7 +102,7 @@ class WechatCustom
         $member = loginSession();
         $wechat_user = session('wechat_user');
         if(!empty($member)) return $member;
-        $wechat_oauth_target_url = $target_url ? $target_url : request()->fullUrl();
+        $wechat_oauth_target_url = $target_url ? : request()->fullUrl();
         if(empty($wechat_user)){
             $wechatOauth = self::$wechatInstance->oauth;
             session(['wechat_oauth_target_url' => $wechat_oauth_target_url]);
