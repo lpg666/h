@@ -126,6 +126,13 @@ class WechatCustom
             $wechat_user_origin_data = self::getWechatUserInfo($openid);
             $subscribe = $wechat_user_origin_data['subscribe'];
         }
+        if($subscribe){
+            $member = 'lpg';
+            session(['wechat_user'=>$wechat_user_origin_data]);
+            loginSession($member);
+        }
+        $redirect_url = mb_strpos($target_url,'?') !==false ? "{$target_url}&subscribe={$subscribe}" : "{$target_url}?subscribe={$subscribe}";
+        return redirect($redirect_url);
     }
 
     /**
