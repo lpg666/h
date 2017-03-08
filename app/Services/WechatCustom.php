@@ -127,7 +127,7 @@ class WechatCustom
             $subscribe = $wechat_user_origin_data['subscribe'];
         }
         if($subscribe){
-            $member = 'lpg';
+            $member = $wechat_user_origin_data;
             session(['wechat_user'=>$wechat_user_origin_data]);
             loginSession($member);
         }
