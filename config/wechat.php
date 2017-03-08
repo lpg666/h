@@ -26,6 +26,16 @@ return [
                 'level' => env('WECHAT_LOG_LEVEL', 'debug'),
                 'file'  => env('WECHAT_LOG_FILE', storage_path('logs\wechat.log')),
             ],
+
+            /**
+             * Guzzle 全局设置
+             *
+             * 更多请参考： http://docs.guzzlephp.org/en/latest/request-options.html
+             */
+            'guzzle' => [
+                'timeout' => 3.0, // 超时时间（秒）
+                //'verify' => false, // 关掉 SSL 认证（强烈不建议！！！）
+            ],
         ],
         /**
          * OAuth 配置
