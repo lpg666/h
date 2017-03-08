@@ -8,7 +8,7 @@
 
 <body>
 1
-
+{{ $member }}
 <script>
 
 </script>
