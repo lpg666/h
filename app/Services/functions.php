@@ -4,7 +4,7 @@
 function envDomain($v='') {
 //	$environment = request()->header('ENVIRONMENT');
     $environment = isset($_SERVER['HTTP_ENVIRONMENT']) ? $_SERVER['HTTP_ENVIRONMENT'] : '';
-    $main_domain = env('MAIN_DOMAIN', 'lpg.com');
+    $main_domain = env('MAIN_DOMAIN', 'lpg6.xyz');
     $domain = (!empty($v) ? "{$v}." : '')  . (!empty($environment) ? "{$environment}." : '') . $main_domain;
     return $domain;
 }
