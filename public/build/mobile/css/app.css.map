@@ -1,0 +1,1 @@
+{"version":3,"sources":["font-face.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA","file":"app.css","sourcesContent":["@font-face {\r\n    font-family: fzqk;\r\n    src:url('/mobile/fonts/fzqk.ttf') format('truetype');\r\n}\r\nbody{font-family: 'Lucida Grande', Helvetica, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'fzqk', sans-serif;}"]}

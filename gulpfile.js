@@ -42,5 +42,9 @@ elixir(function(mix) {
         'es6-promise.min.js'
     ], 'public/admin/js/app.js');
 
-    mix.version(['admin/css/all.css','admin/js/app.js']);
+    mix.styles([
+        'mobile/font-face.css'
+    ],'public/mobile/css/app.css');
+
+    mix.version(['admin/css/all.css','admin/js/app.js','mobile/css/app.css']);
 });

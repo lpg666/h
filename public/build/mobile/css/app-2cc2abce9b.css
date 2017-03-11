@@ -1,0 +1,6 @@
+@font-face {
+    font-family: fzqk;
+    src:url('/mobile/fonts/fzqk.ttf') format('truetype');
+}
+body{font-family: 'Lucida Grande', Helvetica, Arial, 'Microsoft Yahei', 'Hiragino Sans GB', 'fzqk', sans-serif;}
+/*# sourceMappingURL=app.css.map */
