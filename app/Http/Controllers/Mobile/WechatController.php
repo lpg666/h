@@ -17,7 +17,7 @@ class WechatController extends Controller
     public function __construct(){}
 
     public function serve(Request $request){
-        //if($request->input('signature')) return WechatCustom::checkSignature($request);
+        if($request->input('signature')) return WechatCustom::checkSignature($request);
         return WechatCustom::serve();
     }
 
