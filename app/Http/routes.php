@@ -19,6 +19,10 @@ Route::group(['namespace' => 'Api', 'as' => 'api.' , 'domain' => envDomain('api'
     });
 });
 
+Route::group(['namespace' => 'Pc', 'domain' => envDomain('www'), 'as' => 'pc.'], function () {
+    Route::get('/',function(){ return redirect('index');});
+    Route::controller('index', 'IndexController');
+});
 
 Route::group(['namespace' => 'Admin', 'domain' => envDomain('gm'), 'as' => 'admin.'], function () {
     Route::controller('phone', 'PhoneController');
