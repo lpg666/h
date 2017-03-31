@@ -210,4 +210,10 @@ return [
 
     ],
 
+    //又拍云配置
+    'upyun_bucketname' => "lpg-upyun",
+    'upyun_operator_name' => "lpg",
+    'upyun_operator_pwd' =>"lpgupyun",
+    'upyun_domain' => "http://lpg-upyun.b0.upaiyun.com",
+
 ];

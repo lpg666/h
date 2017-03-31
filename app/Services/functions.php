@@ -120,6 +120,36 @@ function saveUrlImage($url, $save_path) {
 }
 
 /**
+ * 上传又拍云
+ *
+ * @param $localFile
+ * @param $upyunFile
+ * @return string
+ */
+function uploadUpyun($localFile, $upyunFile)
+{
+
+    $upyun = new UpYun(config('app.upyun_bucketname'), config('app.upyun_operator_name'), config('app.upyun_operator_pwd'));
+    try {
+        $fh = @fopen($localFile, 'rb');
+        $rsp = @$upyun->writeFile($upyunFile, $fh, true);   // 上传图片，自动创建目录
+        fclose($fh);
+        $file = config('app.upyun_domain') . $upyunFile;
+    } catch (Exception $e) {
+        $file = trim($localFile, '.');
+    }
+    return $file;
+}
+
+function picDomain($path, $ext='') {
+    if (empty($path)) return '';
+    $domain = config('app.upyun_domain');
+    if (!empty($ext)) $path .= $ext;
+    if (mb_stripos($path, $domain) !== false) return $path;
+    return $domain . $path;
+}
+
+/**
  * 获取随机字符串
  *
  * @param int $len 获取长度

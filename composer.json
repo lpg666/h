@@ -16,7 +16,8 @@
         "phpunit/phpunit": "~4.0",
         "symfony/css-selector": "2.8.*|3.0.*",
         "symfony/dom-crawler": "2.8.*|3.0.*",
-        "f2m2/apidocs": "dev-master"
+        "f2m2/apidocs": "dev-master",
+        "upyun/sdk":"2.2.*"
     },
     "autoload": {
         "classmap": [

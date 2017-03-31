@@ -64,7 +64,7 @@ class GoodsController extends AdminController
         $file_path = '/uploadfiles/admin/';
         $filename = md5(time() . rand(1, 1000)) . '.' . $file->getClientOriginalExtension();
         $file->move(public_path($file_path), $filename);
-
+        uploadUpyun(public_path($file_path.$filename), $file_path.$filename);
         return success($file_path.$filename);
     }
 
@@ -129,6 +129,7 @@ class GoodsController extends AdminController
         if($file<=0){
             return error('更新图片失败');
         }else{
+            uploadUpyun(public_path($file_path.$filename), $file_path.$filename);
             unlink(public_path(ShopGoodsPic::where('id',$edit_pic_id)->first()->pic));
             ShopGoodsPic::where('id',$edit_pic_id)->update(['pic'=>$file_path.$filename]);
             return success($file_path.$filename);

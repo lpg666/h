@@ -186,7 +186,7 @@
             var cost_price = $("#cost_price").val();
             var shown = $(".goods_form input[name=shown]:checked").val();
             var pics = $("#pics").find('input').size();
-            var content = um.getContent();
+            var content = ue.getContent();
             if(name.length<=0){
                 swal({text:'请输入商品名称',timer:2000,showConfirmButton:false});
             }else if(price.length<=0){
