@@ -6,6 +6,6 @@ class IndexController extends AdminController
 {
     public function getIndex()
     {
-        return view('Admin/index');
+        return view('admin/index');
     }
 }
