@@ -14,6 +14,7 @@
         <div id="filePicker">选择图片</div>
     </div>
 
+    <input type="file">
 <script src="/mobile/js/jquery-1.8.3.min.js"></script>
 <script src="/mobile/js/webuploader.min.js"></script>
 <script>
