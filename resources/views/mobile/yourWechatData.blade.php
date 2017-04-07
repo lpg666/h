@@ -9,12 +9,12 @@
 </head>
 
 <body>
-    <div id="uploader-demo">
-        <!--用来存放item-->
-        <div id="fileList" class="uploader-list"></div>
-        <div id="filePicker">1</div>
+    <div id="wrapper">
+        <div id="uploader-demo" class="wu-example">
+            <div id="fileList" class="uploader-list"></div>
+            <div id="filePicker" class="webuploader-container"></div>
+        </div>
     </div>
-
     <input type="file">
 <script>
     var BASE_URL = '/mobile';
