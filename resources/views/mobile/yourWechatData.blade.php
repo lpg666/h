@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ elixir('mobile/css/app.css') }}">
     <title>1</title>
     <style>
-        .webuploader-element-invisible{position: relative;}
+        .webuploader-element-invisible{position: relative; width: 500px; height: 200px;  background: #000;}
     </style>
 </head>
 
