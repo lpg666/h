@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ elixir('mobile/css/app.css') }}">
+    <link rel="stylesheet" href="/mobile/css/webuploader.css">
     <title>1</title>
-    <style>
-        .webuploader-element-invisible{position: relative; width: 500px; height: 200px;  background: #000;}
-    </style>
 </head>
 
 <body>
