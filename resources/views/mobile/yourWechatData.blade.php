@@ -32,12 +32,6 @@
         // 内部根据当前运行是创建，可能是input元素，也可能是flash.
         pick: '#filePicker',
 
-        // 只允许选择图片文件。
-        accept: {
-            title: 'Images',
-            extensions: 'jpg,jpeg,png',
-            mimeTypes: 'image/*'
-        }
     });
     // 当有文件添加进来的时候
     uploader.on( 'fileQueued', function( file ) {
