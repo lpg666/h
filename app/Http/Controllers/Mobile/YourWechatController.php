@@ -19,11 +19,11 @@ class YourWechatController extends Controller
         if($request->isMethod('post')){
 
         }else{
-            if($redirect = $this->_loginSession($request)) return $redirect;
+            /*if($redirect = $this->_loginSession($request)) return $redirect;
 
             $member = loginSession();
 
-            dump($member);
+            dump($member);*/
             return view('mobile.yourWechatData');
         }
     }
