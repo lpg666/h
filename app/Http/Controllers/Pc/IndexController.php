@@ -8,7 +8,6 @@ class IndexController extends Controller
 {
     public function getIndex()
     {
-        dd('听说你要JJ服务器？');
-        return view('pc/index');
+        return view('pc.index');
     }
 }
