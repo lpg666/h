@@ -20,7 +20,7 @@
     var BASE_URL = '/mobile';
 </script>
 <script src="/mobile/js/jquery-1.8.3.min.js"></script>
-<script src="/mobile/js/webuploader.js"></script>
+<script src="/mobile/js/webuploader.min.js"></script>
 <script src="/mobile/js/getting-started.js"></script>
 
 </body>
