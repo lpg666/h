@@ -9,19 +9,6 @@
 </head>
 
 <body>
-    <div id="wrapper">
-        <div id="uploader-demo" class="wu-example">
-            <div id="fileList" class="uploader-list"></div>
-            <div id="filePicker" class="webuploader-container"></div>
-        </div>
-    </div>
-    <input type="file">
-<script>
-    var BASE_URL = '/mobile';
-</script>
-<script src="/mobile/js/jquery-1.8.3.min.js"></script>
-<script src="/mobile/js/webuploader.min.js"></script>
-<script src="/mobile/js/getting-started.js"></script>
 
 </body>
 </html>
