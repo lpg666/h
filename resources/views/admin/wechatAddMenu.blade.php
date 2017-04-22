@@ -116,11 +116,14 @@
         var key = $("[name='key']").val();
         var reply = $("[name='reply']").val();
         var media_id = $("[name='media_id']").val();
-
         if(parent_id =='' && menu_size == 3){
-            swal({text:'一级菜单最多为3，如果要添加二级菜单，<br/>请选择上级菜单,否则请删除一级菜单',type:'error',timer:2000,showConfirmButton:false});
+            swal({text:'一级菜单数量最多为3，如果要添加二级菜单，<br/>请选择上级菜单,否则请删除一级菜单',type:'error',timer:2000,showConfirmButton:false});
         }else if(name.length <=0){
             swal({text:'菜单名称不能为空',type:'error',timer:2000,showConfirmButton:false});
+        }else if(parent_id =='' && menu_size < 3 && name.length>4){
+            swal({text:'一级菜单名称长度不能大于4',type:'error',timer:2000,showConfirmButton:false});
+        }else if(parent_id !=='' && menu_size == 3 && name.length>7){
+            swal({text:'二级菜单名称长度不能大于7',type:'error',timer:2000,showConfirmButton:false});
         }else if(type ==''){
             swal({text:'菜单类型必填',type:'error',timer:2000,showConfirmButton:false});
         }else if(type =='view' && url==''){

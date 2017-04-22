@@ -51,8 +51,7 @@ class WechatController extends AdminController
     {
         WechatCustom::setWechatInstance($type);
         $rs = WechatCustom::menu();
-        dd($rs);
-        return $rs;
+        return response()->json($rs);
     }
 
     /**
