@@ -203,7 +203,6 @@ class WechatCustom
             }
             if (!empty($data)) array_push($buttons, $data);
         }
-        dd($buttons);
         return $wechatMenu->add($buttons);
     }
 }
