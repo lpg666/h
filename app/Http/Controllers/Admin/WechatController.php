@@ -47,9 +47,9 @@ class WechatController extends AdminController
     /**
      * 同步菜单
      */
-    public function getSyncMenu($account)
+    public function getSyncMenu($type)
     {
-        WechatCustom::setWechatInstance($account);
+        WechatCustom::setWechatInstance($type);
         $rs = WechatCustom::menu();
         return request()->json($rs);
     }
