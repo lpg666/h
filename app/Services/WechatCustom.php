@@ -20,7 +20,6 @@ class WechatCustom
 
     public static function setWechatInstance($type='service',$auth='oauth')
     {
-        dd($type);
         self::$type = $type;
         self::$auth = $auth;
         $key = "{$type}_{$auth}";
@@ -202,6 +201,7 @@ class WechatCustom
                     if (!empty($sub_data)) array_push($data['sub_button'], $sub_data);
                 }
             }
+            dd($buttons);
             if (!empty($data)) array_push($buttons, $data);
         }
         return $wechatMenu->add($buttons);
