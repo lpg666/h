@@ -130,7 +130,7 @@
         }else if(type =='media_id' && media_id ==''){
             swal({text:'素材id不能为空',type:'error',timer:2000,showConfirmButton:false});
         }else{
-            $.post('{{url('wechat/addmenu')}}',$(".wechatMenu_form").serialize(),function (data) {
+            $.post('{{url('wechat/add-menu')}}',$(".wechatMenu_form").serialize(),function (data) {
                 if (data.msg_type == 200) {
                     swal({text: "添加成功", type: "success", timer: 2000, showConfirmButton: false}).then(function () {
                         window.location.href="{{url('wechat/menu')}}?type={{request()->get('type')}}";
