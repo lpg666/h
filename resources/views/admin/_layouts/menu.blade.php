@@ -1,8 +1,8 @@
 @foreach ($menus as $k=>$menu)
     <li class="{{ $menu[0]['name'] == explode('/',Request::getRequestUri())[1] ? 'active' : '' }}">
         <a href="@if($k==0){{ url('/index') }} @elseif($k==2) {{url('order/index')}} @endif">
-            <i class="fa @if($k==0) fa-home @elseif($k==1) fa-diamond @elseif($k==2) fa fa-calendar-o @elseif($k==3) fa fa-line-chart @elseif($k==4) fa-sun-o @endif"></i>
-            <span class="nav-label">@if($k==0) 主页 @elseif($k==1) 商品管理 @elseif($k==2) 订单管理 @elseif($k==3) 数据统计 @elseif($k==4) 系统管理 @endif</span>
+            <i class="fa @if($k==0) fa-home @elseif($k==1) fa-diamond @elseif($k==2) fa-calendar-o @elseif($k==3) fa-line-chart @elseif($k==4) fa-wechat @else fa-sun-o @endif"></i>
+            <span class="nav-label">@if($k==0) 主页 @elseif($k==1) 商品管理 @elseif($k==2) 订单管理 @elseif($k==3) 数据统计 @elseif($k==4) 公众号管理 @elseif($k==5) 系统管理 @endif</span>
             @if($k!==0)
             <span class="fa arrow"></span>
             @endif

@@ -22,8 +22,12 @@ return [
             '41' => ['name' => 'data', 'desc' => '手机数据统计', 'link' => '/data/phone-index'],
         ],
         [
-            '51' => ['name' => 'operator', 'desc' => '管理员列表', 'link' => '/operator/index'],
-            '52' => ['name' => 'operator', 'desc' => '角色管理', 'link' => '/operator/role-index'],
+            '51' => ['name' => 'wechat', 'desc' => '菜单管理', 'link' => '/wechat/menu?type=service'],
+            '52' => ['name' => 'wechat', 'desc' => '自动回复', 'link' => '/wechat/reply'],
+        ],
+        [
+            '61' => ['name' => 'operator', 'desc' => '管理员列表', 'link' => '/operator/index'],
+            '62' => ['name' => 'operator', 'desc' => '角色管理', 'link' => '/operator/role-index'],
         ],
     ],
     'operations' => [

@@ -73,32 +73,43 @@
                     <li><a href="{{url('/')}}">主页</a></li>
                 @elseif(getCurrentControllerName()=='Goods')
                     <li><a href="{{url('goods/index')}}">商品管理</a></li>
-                    @if(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='getIndex')
+                    @if(getCurrentMethodName()=='getIndex')
                         <li><span>全部商品</span></li>
-                    @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='anyAdd')
+                    @elseif(getCurrentMethodName()=='anyAdd')
                         <li><span>添加商品</span></li>
-                    @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='anyEdit')
+                    @elseif(getCurrentMethodName()=='anyEdit')
                         <li><span>编辑商品</span></li>
-                    @elseif(getCurrentControllerName() == 'Goods' && getCurrentMethodName()=='getNotActive')
+                    @elseif(getCurrentMethodName()=='getNotActive')
                         <li><span>下架商品</span></li>
                     @endif
                 @elseif(getCurrentControllerName()=='Order')
                     <li><a href="{{url('order/index')}}">订单管理</a></li>
+                @elseif(getCurrentControllerName()=='Wechat')
+                    <li><a href="{{url('wechat/menu')}}?type=service">公众号管理</a></li>
+                    @if(getCurrentMethodName()=='getMenu')
+                        <li><span>菜单列表</span></li>
+                    @elseif(getCurrentMethodName()=='getAddmenu')
+                        <li><span>添加菜单</span></li>
+                    @elseif(getCurrentMethodName()=='')
+                        <li><span>菜单列表</span></li>
+                    @elseif(getCurrentMethodName()=='')
+                        <li><span>菜单列表</span></li>
+                    @endif
                 @elseif(getCurrentControllerName()=='Operator')
                     <li><a href="{{url('operator/index')}}">系统管理</a></li>
-                    @if(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='getIndex')
+                    @if(getCurrentMethodName()=='getIndex')
                         <li><span>管理员列表</span></li>
-                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='getRoleIndex')
+                    @elseif(getCurrentMethodName()=='getRoleIndex')
                         <li><span>角色管理</span></li>
-                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyCreate')
+                    @elseif(getCurrentMethodName()=='anyCreate')
                         <li><span>添加用户</span></li>
-                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyEdit')
+                    @elseif(getCurrentMethodName()=='anyEdit')
                         <li><span>编辑用户</span></li>
-                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='getIndex')
+                    @elseif(getCurrentMethodName()=='getIndex')
                         <li><span>角色管理</span></li>
-                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyRoleCreate')
+                    @elseif(getCurrentMethodName()=='anyRoleCreate')
                         <li><span>添加角色</span></li>
-                    @elseif(getCurrentControllerName() == 'Operator' && getCurrentMethodName()=='anyRoleEdit')
+                    @elseif(getCurrentMethodName()=='anyRoleEdit')
                         <li><span>编辑角色</span></li>
                     @endif
                 @endif
