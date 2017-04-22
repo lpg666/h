@@ -201,9 +201,9 @@ class WechatCustom
                     if (!empty($sub_data)) array_push($data['sub_button'], $sub_data);
                 }
             }
-            dd($buttons);
             if (!empty($data)) array_push($buttons, $data);
         }
+        dd($buttons);
         return $wechatMenu->add($buttons);
     }
 }
