@@ -20,6 +20,7 @@ class WechatCustom
 
     public static function setWechatInstance($type='service',$auth='oauth')
     {
+        dd($type);
         self::$type = $type;
         self::$auth = $auth;
         $key = "{$type}_{$auth}";
