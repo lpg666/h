@@ -61,7 +61,7 @@ class GoodsController extends AdminController
         if (!in_array(strtoupper($file->getClientOriginalExtension()), $ext)) {
             return error('上传图片类型不符合');
         }
-        $file_path = 'uploadfiles/admin/';
+        $file_path = '/uploadfiles/admin/';
         $filename = md5(time() . rand(1, 1000)) . '.' . $file->getClientOriginalExtension();
         $file->move(public_path($file_path), $filename);
         uploadUpyun(public_path($file_path.$filename), $file_path.$filename);
@@ -123,7 +123,7 @@ class GoodsController extends AdminController
         $base64_body = substr(strstr($base64,','),1);
         $file = base64_decode($base64_body);
 
-        $file_path = 'uploadfiles/admin/';
+        $file_path = '/uploadfiles/admin/';
         $filename = md5(time() . rand(1, 1000)) . '.' . $base64_ext;
         $file = file_put_contents(public_path($file_path.$filename),$file);
         if($file<=0){
