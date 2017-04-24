@@ -138,7 +138,6 @@ function uploadUpyun($localFile, $upyunFile)
     } catch (Exception $e) {
         $file = trim($localFile, '.');
     }
-    dd($file);
     return $file;
 }
 
