@@ -136,7 +136,6 @@ function uploadUpyun($localFile, $upyunFile)
         $file = config('app.upyun_domain') . $upyunFile;
     } catch (Exception $e) {
         $file = trim($localFile, '.');
-        dd($e);
     }
     return $file;
 }
