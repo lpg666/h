@@ -43,7 +43,7 @@
                                 <td>{{ $list['media_id'] }}</td>
                                 <td>{{ $list['key'] }}</td>
                                 <td>{{ $list['reply'] }}</td>
-                                <td><a class="menu_edit" href="{{ url('wechat/menuEdit') }}?menu_id={{$list['id']}}">编辑</a><span class="shuxian">|</span><a class="menu_delete" href="{{ url('wechat/menuDelete') }}">删除</a></td>
+                                <td><a class="menu_edit" href="{{ url('wechat/edit-menu') }}?menu_id={{$list['id']}}&type={{request()->get('type')}}">编辑</a><span class="shuxian">|</span><a class="menu_delete" data-a="{{ url('wechat/delete-menu',$list['id']) }}" href="javascript:void(0)">删除</a></td>
                             </tr>
                                 @if(!empty($lists[$list['id']]))
                                     @foreach($lists[$list['id']] as $list2)
@@ -54,7 +54,7 @@
                                             <td>{{ $list2['media_id'] }}</td>
                                             <td>{{ $list2['key'] }}</td>
                                             <td>{{ $list2['reply'] }}</td>
-                                            <td><a class="menu_edit" href="{{ url('wechat/menuEdit') }}?menu_id={{$list2['id']}}">编辑</a><span class="shuxian">|</span><a class="menu_delete" href="{{ url('wechat/menuDelete') }}">删除</a></td>
+                                            <td><a class="menu_edit" href="{{ url('wechat/edit-menu') }}?menu_id={{$list2['id']}}&type={{request()->get('type')}}">编辑</a><span class="shuxian">|</span><a class="menu_delete" data-a="{{ url('wechat/delete-menu',$list2['id']) }}" href="javascript:void(0)">删除</a></td>
                                         </tr>
                                     @endforeach
                                 @endif
@@ -76,14 +76,13 @@
 
 @section('footer_assets')
 <script>
-    $(".frozen").click(function () {
+    $(".menu_delete").click(function () {
         var _this = $(this);
-        var id = _this.parents('td').find('input').val();
-
-        $.get('{{url('goods/frozen')}}?id=' + id + '', function (data) {
+        var _src = $(this).attr('data-a');
+        $.get(_src,function (data) {
             if (data.msg_type == 200) {
                 _this.parents('tr').remove();
-                swal({text: "下架成功", type: "success", timer: 2000, showConfirmButton: false});
+                swal({text: "删除成功", type: "success", timer: 2000, showConfirmButton: false});
             } else {
                 swal({text: data.msg, type: "error", timer: 2000, showConfirmButton: false});
             }

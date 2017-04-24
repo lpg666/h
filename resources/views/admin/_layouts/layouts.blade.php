@@ -88,12 +88,10 @@
                     <li><a href="{{url('wechat/menu')}}?type=service">公众号管理</a></li>
                     @if(getCurrentMethodName()=='getMenu')
                         <li><span>菜单列表</span></li>
-                    @elseif(getCurrentMethodName()=='getAddmenu')
+                    @elseif(getCurrentMethodName()=='anyAddMenu')
                         <li><span>添加菜单</span></li>
-                    @elseif(getCurrentMethodName()=='')
-                        <li><span>菜单列表</span></li>
-                    @elseif(getCurrentMethodName()=='')
-                        <li><span>菜单列表</span></li>
+                    @elseif(getCurrentMethodName()=='anyMenEudit')
+                        <li><span>编辑菜单</span></li>
                     @endif
                 @elseif(getCurrentControllerName()=='Operator')
                     <li><a href="{{url('operator/index')}}">系统管理</a></li>

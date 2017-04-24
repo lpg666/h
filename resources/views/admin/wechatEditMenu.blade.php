@@ -14,7 +14,7 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>添加菜单 <small></small></h5>
+                    <h5>编辑菜单 <small></small></h5>
                 </div>
                 <div class="ibox-content">
                     <form action="" method="post" class="wechatMenu_form form-horizontal" >
@@ -25,7 +25,7 @@
                                 <select class="form-control" name="parent_id">
                                     <option value="">请选择</option>
                                     @foreach($data as $v)
-                                    <option value="{{$v->id}}">{{$v->name}}</option>
+                                    <option value="{{$v->id}}" @if($v->id == $menu->parent_id) selected @endif>{{$v->name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -33,7 +33,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 col-md-2 control-label">菜单名称:</label>
                             <div class="col-sm-10 col-md-2">
-                                <input class="form-control" name="name" type="text" value="">
+                                <input class="form-control" name="name" type="text" value="{{$menu->name}}">
                             </div>
                         </div>
                         <div class="form-group">
@@ -50,34 +50,34 @@
                             <div class="col-sm-10 col-md-2">
                                 <select class="type_select form-control" name="type" onchange="changeType(this.value)">
                                     <option value="">请选择</option>
-                                    <option value="view">view</option>
-                                    <option value="click">click</option>
-                                    <option value="media_id">素材</option>
+                                    <option value="view" @if($menu->type=='view') selected @endif>view</option>
+                                    <option value="click" @if($menu->type=='click') selected @endif>click</option>
+                                    <option value="media_id" @if($menu->type=='media_id') selected @endif>素材</option>
                                 </select>
                             </div>
                         </div>
                         <div class="url form-group">
                             <label class="col-sm-2 col-md-2 control-label">Url:</label>
                             <div class="col-sm-10 col-md-4">
-                                <input class="form-control" type="text" name="url" placeholder="菜单类型为view时必填">
+                                <input class="form-control" type="text" name="url" placeholder="菜单类型为view时必填" value="{{$menu->url}}">
                             </div>
                         </div>
                         <div class="key form-group">
                             <label class="col-sm-2 col-md-2 control-label">Key:</label>
                             <div class="col-sm-10 col-md-4">
-                                <input class="form-control" type="text" name="key" placeholder="菜单类型为click时必填">
+                                <input class="form-control" type="text" name="key" placeholder="菜单类型为click时必填" value="{{$menu->key}}">
                             </div>
                         </div>
                         <div class="reply form-group">
                             <label class="col-sm-2 col-md-2 control-label">回复内容:</label>
                             <div class="col-sm-10 col-md-4">
-                                <textarea class="form-control" name="reply" placeholder="菜单类型为click时必填"></textarea>
+                                <textarea class="form-control" name="reply" placeholder="菜单类型为click时必填">{{$menu->reply}}</textarea>
                             </div>
                         </div>
                         <div class="media form-group">
                             <label class="col-sm-2 col-md-2 control-label">素材id:</label>
                             <div class="col-sm-10 col-md-4">
-                                <input class="form-control" type="text" name="media_id" placeholder="菜单类型为素材时必填">
+                                <input class="form-control" type="text" name="media_id" placeholder="菜单类型为素材时必填" value="{{$menu->media_id}}">
                             </div>
                         </div>
                         {!! csrf_field() !!}
@@ -108,6 +108,9 @@
             $(".key,.reply,.url,.media").val('').hide();
         }
     }
+    $(function () {
+        changeType('{{$menu->type}}');
+    });
     $("#from_btn").click(function () {
         var parent_id = $("[name='parent_id']").val();
         var menu_size = $(".menu_size").val();
@@ -117,14 +120,11 @@
         var key = $("[name='key']").val();
         var reply = $("[name='reply']").val();
         var media_id = $("[name='media_id']").val();
+
         if(parent_id =='' && menu_size == 3){
-            swal({text:'一级菜单数量最多为3，如果要添加二级菜单，<br/>请选择上级菜单,否则请删除一级菜单',type:'error',timer:2000,showConfirmButton:false});
+            swal({text:'一级菜单最多为3，如果要添加二级菜单，<br/>请选择上级菜单,否则请删除一级菜单',type:'error',timer:2000,showConfirmButton:false});
         }else if(name.length <=0){
             swal({text:'菜单名称不能为空',type:'error',timer:2000,showConfirmButton:false});
-        }else if(parent_id =='' && menu_size < 3 && name.length>4){
-            swal({text:'一级菜单名称长度不能大于4',type:'error',timer:2000,showConfirmButton:false});
-        }else if(parent_id !=='' && menu_size == 3 && name.length>7){
-            swal({text:'二级菜单名称长度不能大于7',type:'error',timer:2000,showConfirmButton:false});
         }else if(type ==''){
             swal({text:'菜单类型必填',type:'error',timer:2000,showConfirmButton:false});
         }else if(type =='view' && url==''){
@@ -134,7 +134,7 @@
         }else if(type =='media_id' && media_id ==''){
             swal({text:'素材id不能为空',type:'error',timer:2000,showConfirmButton:false});
         }else{
-            $.post('{{url('wechat/add-menu')}}',$(".wechatMenu_form").serialize(),function (data) {
+            $.post('{{url('wechat/edit-menu')}}',$(".wechatMenu_form").serialize(),function (data) {
                 if (data.msg_type == 200) {
                     swal({text: "添加成功", type: "success", timer: 2000, showConfirmButton: false}).then(function () {
                         window.location.href="{{url('wechat/menu')}}?type={{request()->get('type')}}";
