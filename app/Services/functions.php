@@ -128,13 +128,13 @@ function saveUrlImage($url, $save_path) {
  */
 function uploadUpyun($localFile, $upyunFile)
 {
-
     $upyun = new UpYun(config('app.upyun_bucketname'), config('app.upyun_operator_name'), config('app.upyun_operator_pwd'));
     try {
         $fh = @fopen($localFile, 'rb');
         $rsp = @$upyun->writeFile($upyunFile, $fh, true);   // 上传图片，自动创建目录
         fclose($fh);
         $file = config('app.upyun_domain') . $upyunFile;
+        dd($file);
     } catch (Exception $e) {
         $file = trim($localFile, '.');
     }
