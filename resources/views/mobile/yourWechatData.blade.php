@@ -13,13 +13,13 @@
             desc: "b",
             imgUrl: "",
             link: "{{request()->fullUrl()}}"
-        }
+        };
         var timeline_share_info = {
             title: "a",
             desc: "b",
             imgUrl: "",
             link: "{{request()->fullUrl()}}"
-        }
+        };
         wx.ready(function(){
             wx.onMenuShareWeibo(share_info);
             wx.onMenuShareAppMessage(share_info);
