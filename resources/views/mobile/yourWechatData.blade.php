@@ -9,15 +9,15 @@
     <style>
         wx.config({!! \App\Services\WechatCustom::jssdk('service') !!});
         var share_info = {
-            title: "",
-            desc: '我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！',
-            imgUrl: ',
+            title: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
+            desc: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
+            imgUrl: "",
             link: "{{request()->fullUrl()}}"
         }
         var timeline_share_info = {
-            title: "",
-            desc: "",
-            imgUrl: '',
+            title: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
+            desc: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
+            imgUrl: "",
             link: "{{request()->fullUrl()}}"
         }
         wx.ready(function(){
