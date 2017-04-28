@@ -205,4 +205,15 @@ class WechatCustom
         }
         return $wechatMenu->add($buttons);
     }
+
+    /**
+     * JSSDK
+     */
+    public static function jssdk($type='service', $ApiList=['onMenuShareTimeline', 'onMenuShareAppMessage', 'onMenuShareQQ', 'onMenuShareWeibo'], $debug=false) {
+        if (request()->header('ENVIRONMENT') == 's1') return '';
+        self::setWechatInstance($type);
+        $js = self::$wechatInstance->js;
+        $rs = $js->config($ApiList, $debug);
+        return $rs;
+    }
 }
