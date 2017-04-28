@@ -6,17 +6,17 @@
     <title>12</title>
     <link rel="stylesheet" href="{{ elixir('mobile/css/app.css') }}">
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <style>
+    <script>
         wx.config({!! \App\Services\WechatCustom::jssdk('service') !!});
         var share_info = {
-            title: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
-            desc: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
+            title: "a",
+            desc: "b",
             imgUrl: "",
             link: "{{request()->fullUrl()}}"
         }
         var timeline_share_info = {
-            title: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
-            desc: "我公司正在参加“2016消费电子创新产品”评比，请您助我“一票”之力！",
+            title: "a",
+            desc: "b",
             imgUrl: "",
             link: "{{request()->fullUrl()}}"
         }
@@ -26,7 +26,7 @@
             wx.onMenuShareQQ(share_info);
             wx.onMenuShareTimeline(timeline_share_info);
         });
-    </style>
+    </script>
 </head>
 
 <body>
