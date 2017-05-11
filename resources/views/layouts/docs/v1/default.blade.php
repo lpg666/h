@@ -147,6 +147,14 @@
                                 </div>
                               </li>
                              <li>
+                                <div class="parameter-name">password_confirmation</div>
+                                <div class="parameter-type">string</div>
+                                <div class="parameter-desc">>=6 必填、用户密码重复</div>
+                                <div class="parameter-value">
+                                    <input type="password" class="parameter-value-text" name="password_confirmation">
+                                </div>
+                              </li>
+                             <li>
                                 <div class="parameter-name">role_id</div>
                                 <div class="parameter-type">string</div>
                                 <div class="parameter-desc">必填、用户名称</div>
