@@ -30,6 +30,14 @@
                             </li>
 
 
+                            <li>
+                                <a href="#TestUser">TestUser</a>
+                                <ul>
+									<li><a href="#TestUser_Register">Register</a></li>
+</ul>
+                            </li>
+
+
                         </ul>
                     </div>
                 </div>
@@ -79,6 +87,71 @@
                                 <div class="parameter-desc">必填、订单id</div>
                                 <div class="parameter-value">
                                     <input type="text" class="parameter-value-text" name="id">
+                                </div>
+                              </li>
+
+                            </ul>
+                          </div>
+                           <div class="generate-response" >
+                              <!-- <input type="hidden" name="_method" value="GET"> -->
+                              <input type="submit" class="generate-response-btn" value="查看结果">
+                          </div>
+                        </form>
+                        <hr>
+                        
+
+                                                <a href="#" class="waypoint" name="TestUser"></a>
+                        <h2>TestUser</h2>
+                        <p></p>
+
+                        
+                        <a href="#" class="waypoint" name="TestUser_Register"></a>
+                        <div class="endpoint-header">
+                            <ul>
+                            <li><h2>GET</h2></li>
+                            <li><h3>Register</h3></li>
+                            <li>v1/user/register</li>
+                          </ul>
+                        </div>
+
+                        <div>
+                          <p class="endpoint-short-desc">用户注册</p>
+                        </div>
+                       <!--  <div class="parameter-header">
+                             <p class="endpoint-long-desc"></p>
+                        </div> -->
+                        <form class="api-explorer-form" uri="v1/user/register" type="GET">
+                          <div class="endpoint-paramenters">
+                            <h4>参数列表</h4>
+                            <ul>
+                              <li class="parameter-header">
+                                <div class="parameter-name">参数</div>
+                                <div class="parameter-type">类型</div>
+                                <div class="parameter-desc">描述</div>
+                                <div class="parameter-value">取值</div>
+                              </li>
+                                                           <li>
+                                <div class="parameter-name">name</div>
+                                <div class="parameter-type">string</div>
+                                <div class="parameter-desc">必填、用户账号</div>
+                                <div class="parameter-value">
+                                    <input type="text" class="parameter-value-text" name="name">
+                                </div>
+                              </li>
+                             <li>
+                                <div class="parameter-name">password</div>
+                                <div class="parameter-type">string</div>
+                                <div class="parameter-desc">>=6 必填、用户密码</div>
+                                <div class="parameter-value">
+                                    <input type="password" class="parameter-value-text" name="password">
+                                </div>
+                              </li>
+                             <li>
+                                <div class="parameter-name">role_id</div>
+                                <div class="parameter-type">string</div>
+                                <div class="parameter-desc">必填、用户名称</div>
+                                <div class="parameter-value">
+                                    <input type="text" class="parameter-value-text" name="role_id">
                                 </div>
                               </li>
 

@@ -13,6 +13,7 @@
 Route::group(['namespace' => 'Api', 'as' => 'api.' , 'domain' => envDomain('api'), 'middleware' => 'api.log'], function(){
     Route::group(['namespace' => 'v1', 'prefix' => 'v1'], function() {
         Route::get('order/index','OrderController@Order');
+        Route::get('user/register','TestUserController@Register');
         Route::get('docs', function () {
             return \Illuminate\Support\Facades\View::make('docs.v1.index');
         });
