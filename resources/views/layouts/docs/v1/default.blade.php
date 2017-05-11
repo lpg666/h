@@ -133,7 +133,7 @@
                                                            <li>
                                 <div class="parameter-name">name</div>
                                 <div class="parameter-type">string</div>
-                                <div class="parameter-desc">必填、用户账号</div>
+                                <div class="parameter-desc">必填、用户登录账号</div>
                                 <div class="parameter-value">
                                     <input type="text" class="parameter-value-text" name="name">
                                 </div>

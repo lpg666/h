@@ -10,7 +10,7 @@ class TestUserController extends ApiController{
 
     /**
      * 用户注册
-     * @param string $name 必填、用户账号
+     * @param string $name 必填、用户登录账号
      * @param string $password >=6 必填、用户密码
      * @param string $password_confirmation >=6 必填、用户密码重复
      * @param string $role_id 必填、用户名称
