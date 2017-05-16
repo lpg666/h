@@ -26,8 +26,10 @@ class TestUserController extends ApiController{
         ];
         $message = [
             'name.required' => '账号不能为空',
-            'password.required|password_confirmation.required' => '密码不能为空',
-            'password.min|password_confirmation.min' => '密码不能少于6位',
+            'password.required' => '密码不能为空',
+            'password_confirmation.required' => '密码不能为空',
+            'password.min' => '密码不能少于6位',
+            'password_confirmation.min' => '密码不能少于6位',
             'password.confirmed' => '两次密码不一致'
 
         ];
