@@ -30,7 +30,8 @@ class TestUserController extends ApiController{
             'password_confirmation.required' => '密码不能为空',
             'password.min' => '密码不能少于6位',
             'password_confirmation.min' => '密码不能少于6位',
-            'password.confirmed' => '两次密码不一致'
+            'password.confirmed' => '两次密码不一致',
+            'role_id.required' => '名称不能为空'
 
         ];
         if (($error = $this->validate($request,$rules,$message)) !== true) return $error;
