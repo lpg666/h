@@ -60,16 +60,16 @@ GuaGuaLe.prototype = {
 
         var _this = this;
         //设置事件
-        this.$eleFront.mousedown(function (event)
+        this.$eleFront.touchstart(function (event)
         {
             _this.mouseDown(event);
-        }).mousemove(function (event)
+        }).touchmove(function (event)
             {
                 _this.mouseMove(event);
-            }).mouseup(function (event)
+            }).touchend(function (event)
             {
                 _this.mouseUp(event);
-            }).mouseout(function ()
+            }).touchend(function ()
             {
                 _this.isStart = false ;
             });
