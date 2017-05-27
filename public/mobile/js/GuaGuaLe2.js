@@ -60,19 +60,24 @@ GuaGuaLe.prototype = {
 
         var _this = this;
         //设置事件
-        this.$eleFront.touchstart(function (event)
-        {
-            _this.mouseDown(event);
-        }).touchmove(function (event)
-            {
-                _this.mouseMove(event);
-            }).touchend(function (event)
-            {
-                _this.mouseUp(event);
-            }).touchend(function ()
-            {
-                _this.isStart = false ;
-            });
+        document.addEventListener('touchstart',touch,false);
+        document.addEventListener('touchmove',touch,false);
+        document.addEventListener('touchend',touch,false);
+
+        function touch (event){
+            var event = event || window.event;
+            switch(event.type){
+                case "touchstart":
+                    _this.mouseDown(event);
+                    break;
+                case "touchend":
+                    _this.mouseMove(event);
+                    break;
+                case "touchmove":
+                    _this.mouseUp(event);
+                    break;
+            }
+        }
     },
     mouseDown: function (event)
     {
