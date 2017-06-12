@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Model\Operator;
+use App\Model\OperatorLoginLog;
 use Illuminate\Http\Request;
 
 class AuthController extends AdminController
@@ -43,10 +44,19 @@ class AuthController extends AdminController
             $json['msg_type'] = 1;
             $json['msg'] = '登录成功';
             return response()->json($json);
+        }else{
+            $json['msg_type'] = -2;
+            $json['msg'] = '密码不正确';
+            return response()->json($json);
         }
-        $json['msg_type'] = -2;
-        $json['msg'] = '密码不正确';
-        return response()->json($json);
+
+        $log = OperatorLoginLog::create([
+            'account' => $name,
+            'ip' => ip2long($request->getClientIp()),
+            'enterprise_id' => 0,
+            'online_time' => 0
+        ]);
+
     }
 
     /**
