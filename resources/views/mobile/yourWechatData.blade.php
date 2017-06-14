@@ -19,11 +19,13 @@
 </body>
 </html>
 <script>
-    FastClick.attach(document.body);
-    var button = document.getElementById('comment_but');
-    var inputElem = document.getElementsByClassName('pin_text')[0];
-    button.addEventListener('click', function(){
-        console.log(inputElem);
-        inputElem.focus();
-    });
+    window.addEventListener('load', function() {
+        var textInput = document.querySelector('.pin_text');
+        FastClick.attach(document.body);
+        Array.prototype.forEach.call(document.getElementById('comment_but'), function(testEl) {
+            testEl.addEventListener('click', function() {
+                textInput.focus();
+            }, false)
+        });
+    }, false);
 </script>
