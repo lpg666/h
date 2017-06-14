@@ -14,15 +14,16 @@
 </head>
 
 <body>
-    <div id="comment_but">aaaaaa</div>
-    <input autofocus="true" class="pin_text">
+    <div class="text" style="width: 200px; height: 200px; border: 1px solid #000;">aaaaaa</div>
+    <input type="text" autofocus="true" class="pin_text">
 </body>
 </html>
 <script>
     window.addEventListener('load', function() {
-        var textInput = document.querySelector('input');
+        var textInput = document.querySelector('.pin_text');
+
         FastClick.attach(document.body);
-        Array.prototype.forEach.call(document.getElementById('comment_but'), function(testEl) {
+        Array.prototype.forEach.call(document.getElementsByClassName('test'), function(testEl) {
             testEl.addEventListener('click', function() {
                 textInput.focus();
             }, false)
