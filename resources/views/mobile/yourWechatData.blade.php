@@ -20,7 +20,7 @@
 </html>
 <script>
     window.addEventListener('load', function() {
-        var textInput = document.querySelector('.pin_text');
+        var textInput = document.querySelector('input');
         FastClick.attach(document.body);
         Array.prototype.forEach.call(document.getElementById('comment_but'), function(testEl) {
             testEl.addEventListener('click', function() {
