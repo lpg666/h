@@ -47,12 +47,16 @@ class YourWechatController extends Controller
         $data=json_decode($data);
         $ticket=$data->ticket;
 
-        $noncestr = $request->input('noncestr');
-        $timestamp = $request->input('timestamp');
+        $noncestr = 'weixin';
+        $timestamp = time();
         $url = $request->input('url');
         $jsapi_ticket = sha1('jsapi_ticket='.$ticket.'&noncestr='.$noncestr.'&timestamp='.$timestamp.'&url='.$url);
 
-        return $jsapi_ticket;
+        $data->appid = 'wx45a224e60d651136';
+        $data->timestamp = $timestamp;
+        $data->noncestr = $noncestr;
+        $data->signature = $jsapi_ticket;
+        return response()->json($data);
     }
 
     private function _loginSession($request)
