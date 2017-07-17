@@ -56,7 +56,7 @@ class YourWechatController extends Controller
         $data->timestamp = $timestamp;
         $data->noncestr = $noncestr;
         $data->signature = $jsapi_ticket;
-        return response()->json($data);
+        return json_encode($data);
     }
 
     private function _loginSession($request)
