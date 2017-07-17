@@ -28,8 +28,31 @@ class YourWechatController extends Controller
         }
     }
 
-    public function anyFx(){
-        return WechatCustom::jssdk();
+    public function anyFx(Request $request){
+        $curl = curl_init();
+        $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx45a224e60d651136&secret=d7a975ce04146ce217d721e60c56b2af';
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $data = curl_exec($curl);
+        curl_close($curl);
+        $data=json_decode($data);
+        $access_token=$data->access_token;
+
+        $curl = curl_init();
+        $url='https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token='.$access_token.'&type=jsapi';
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $data = curl_exec($curl);
+        curl_close($curl);
+        $data=json_decode($data);
+        $ticket=$data->ticket;
+
+        $noncestr = $request->input('noncestr');
+        $timestamp = $request->input('timestamp');
+        $url = $request->input('url');
+        $jsapi_ticket = sha1('jsapi_ticket='.$ticket.'&noncestr='.$noncestr.'&timestamp='.$timestamp.'&url='.$url);
+
+        return $jsapi_ticket;
     }
 
     private function _loginSession($request)
