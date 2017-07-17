@@ -28,6 +28,10 @@ class YourWechatController extends Controller
         }
     }
 
+    public function anyFx(){
+        return WechatCustom::jssdk();
+    }
+
     private function _loginSession($request)
     {
         if($request->input('subscribe') !== '0'){
