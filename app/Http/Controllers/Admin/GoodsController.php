@@ -123,9 +123,9 @@ class GoodsController extends AdminController
         $base64_body = substr(strstr($base64,','),1);
         $file = base64_decode($base64_body);
 
-        $file_path = '/uploadfiles/admin/';
-        $filename = md5(time() . rand(1, 1000)) . '.' . $base64_ext;
-        $file = file_put_contents(public_path($file_path.$filename),$file);
+            $file_path = '/uploadfiles/admin/';
+            $filename = md5(time() . rand(1, 1000)) . '.' . $base64_ext;
+            $file = file_put_contents(public_path($file_path.$filename),$file);
         if($file<=0){
             return error('更新图片失败');
         }else{

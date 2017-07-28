@@ -6,30 +6,27 @@
     <title>12</title>
     <link rel="stylesheet" href="{{ elixir('mobile/css/app.css') }}">
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script>
-        wx.config({!! \App\Services\WechatCustom::jssdk('service') !!});
-        var share_info = {
-            title: "a",
-            desc: "b",
-            imgUrl: "",
-            link: "{{request()->fullUrl()}}"
-        };
-        var timeline_share_info = {
-            title: "a",
-            desc: "b",
-            imgUrl: "",
-            link: "{{request()->fullUrl()}}"
-        };
-        wx.ready(function(){
-            wx.onMenuShareWeibo(share_info);
-            wx.onMenuShareAppMessage(share_info);
-            wx.onMenuShareQQ(share_info);
-            wx.onMenuShareTimeline(timeline_share_info);
-        });
-    </script>
+    <script type="text/javascript" src="{{asset('mobile/js/jquery-1.8.3.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('mobile/js/fastclick.js')}}"></script>
+    <style>
+
+    </style>
 </head>
 
 <body>
-
+    <div class="text" style="width: 200px; height: 200px; border: 1px solid #000;">aaaaaa</div>
+    <input type="text" autofocus="true" class="pin_text">
 </body>
 </html>
+<script>
+    window.addEventListener('load', function() {
+        var textInput = document.querySelector('.pin_text');
+
+        FastClick.attach(document.body);
+        Array.prototype.forEach.call(document.getElementsByClassName('test'), function(testEl) {
+            testEl.addEventListener('click', function() {
+                textInput.focus();
+            }, false)
+        });
+    }, false);
+</script>
