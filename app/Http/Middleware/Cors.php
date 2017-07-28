@@ -11,4 +11,5 @@ class Cors
         $request->header('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, OPTIONS');
         $request->header('Access-Control-Allow-Credentials', 'false');
         return $next($request);
+    }
 }
