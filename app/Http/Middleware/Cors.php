@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 use Closure;
+use Response;
 class Cors
 {   //跨域中间建
     public function handle($request, Closure $next)
