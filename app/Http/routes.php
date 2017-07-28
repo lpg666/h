@@ -10,7 +10,7 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::group(['namespace' => 'Api', 'as' => 'api.' , 'domain' => envDomain('api'), 'middleware' => 'api.log'], function(){
+Route::group(['namespace' => 'Api', 'as' => 'api.' , 'domain' => envDomain('api'), 'middleware' => ['api.log','api.kuayu']], function(){
     Route::group(['namespace' => 'v1', 'prefix' => 'v1'], function() {
         Route::get('order/index','OrderController@Order');
         Route::get('user/register','TestUserController@Register');

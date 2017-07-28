@@ -19,6 +19,15 @@
 </body>
 </html>
 <script>
+    $.ajax({
+        type:'get',
+        url:'http://api.lpg6.xyz/v1/order/index',
+        data:{'id':1},
+        success:function (data) {
+            alert(data);
+        }
+    });
+
     window.addEventListener('load', function() {
         var textInput = document.querySelector('.pin_text');
 

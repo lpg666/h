@@ -29,7 +29,6 @@ class Kernel extends HttpKernel
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
-            \App\Http\Middleware\Cors::class
         ],
 
         'api' => [
@@ -52,5 +51,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'admin.auth' => \App\Http\Middleware\AdminAuth::class,
         'api.log' => \App\Http\Middleware\ApiLog::class,
+        'api.kuayu' => \App\Http\Middleware\Cors::class
     ];
 }
