@@ -49,3 +49,7 @@ Route::group(['namespace' => 'Mobile', 'domain' => envDomain('m'), 'as' => 'mobi
     Route::any('wechatService/oauth-base', 'WechatServiceController@oauthBase');
     Route::any('wechatService/menu', 'WechatServiceController@menu');
 });
+
+Route::group(['namespace' => 'Vue', 'domain' => envDomain('gmvue'), 'as' => 'vue.'], function () {
+    Route::controller('/', 'IndexController');
+});
