@@ -45,7 +45,7 @@ class AuthController extends AdminController
             $json['msg'] = '登录成功';
             $log = OperatorLoginLog::create([
                 'account' => $name,
-                'ip' => ip2long($request->getClientIp()),
+                'ip' => $request->getClientIp(),
                 'enterprise_id' => 0,
                 'online_time' => 0
             ]);
