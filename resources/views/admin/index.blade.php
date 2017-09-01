@@ -6,7 +6,7 @@
 @endsection
 
 @section('content')
-    <p style="text-align: center; font-size: 28px; line-height: 200%;">看什么看，没看过主页？</p>
+    <p style="text-align: center; font-size: 28px; line-height: 200%;">主页</p>
 @endsection
 
 @section('footer_assets')
