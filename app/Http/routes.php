@@ -14,6 +14,9 @@ Route::group(['namespace' => 'Api', 'as' => 'api.' , 'domain' => envDomain('api'
     Route::group(['namespace' => 'v1', 'prefix' => 'v1'], function() {
         Route::get('order/index','OrderController@Order');
         Route::get('user/register','TestUserController@Register');
+        /*后台管理系统API*/
+        Route::post('gm/login', 'GmAutoController@Login');
+
         Route::get('docs', function () {
             return \Illuminate\Support\Facades\View::make('docs.v1.index');
         });
