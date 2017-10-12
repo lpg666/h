@@ -39,6 +39,7 @@ class GmAutoController extends ApiController{
                 'enterprise_id' => 0,
                 'online_time' => 0
             ]);
+            $data = (object);
             $data->email = $operator->email;
             $data->last_ip = $operator->last_ip;
             $data->name = $operator->name;
