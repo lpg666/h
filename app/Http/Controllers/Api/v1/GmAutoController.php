@@ -39,7 +39,13 @@ class GmAutoController extends ApiController{
                 'enterprise_id' => 0,
                 'online_time' => 0
             ]);
-            return success($operator);
+            $data->email = $operator->email;
+            $data->last_ip = $operator->last_ip;
+            $data->name = $operator->name;
+            $data->role = $operator->role;
+            $data->role_id = $operator->role_id;
+            $data->updated_at = $operator->updated_at;
+            return success($data);
         }else{
             return error('密码不正确',-2);
         }
