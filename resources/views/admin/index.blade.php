@@ -6,8 +6,10 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        欢迎
+    <div style="width: 100%; display: table; height: calc(100vh - 140px);">
+        <span style="vertical-align: middle; display: table-cell; text-align: center; font-size: 36px;">
+            欢迎
+        </span>
     </div>
 @endsection
 
